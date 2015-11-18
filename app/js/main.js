@@ -1,6 +1,8 @@
 'use strict';
 
 import angular from 'angular';
+window.$ = window.jQuery = require('jquery');
+require('bootstrap');
 
 // angular modules
 import 'angular-ui-router';

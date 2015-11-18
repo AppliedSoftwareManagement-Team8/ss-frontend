@@ -14,6 +14,11 @@ export default {
     prodSourcemap: false,
     sassIncludePaths: []
   },
+  
+   bootstrap: {
+    src: './node_modules/bootstrap/dist/css/*.min.css',
+    dest: 'build/vendor/'
+  },
 
   scripts: {
     src: 'app/js/**/*.js',
