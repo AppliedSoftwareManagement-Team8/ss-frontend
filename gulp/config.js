@@ -15,7 +15,7 @@ export default {
     sassIncludePaths: []
   },
   
-   bootstrap: {
+  bootstrap: {
     src: './node_modules/bootstrap/dist/css/*.min.css',
     dest: 'build/vendor/'
   },
@@ -32,6 +32,10 @@ export default {
 
   fonts: {
     src: ['app/fonts/**/*'],
+    dest: 'build/fonts'
+  },
+  bootstrapFonts: {
+    src: ['./node_modules/bootstrap/dist/fonts/**/*'],
     dest: 'build/fonts'
   },
 

@@ -1,9 +1,154 @@
 @import 'vars';
 @import 'typography';
 
+$white: #ffffff;
+
 body {
   font-family: Helvetica, sans-serif;
   color: $font-color--dark;
   background-color: $background--light;
   padding: $half-space;
+}
+
+@media (min-width: 1400px) {
+  .Ss {
+    .Ss-footer {
+    }
+    .Ss-header {
+    }
+
+    .Ss-maincontent {
+    }
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1399px) {
+  .Ss {
+    .Ss-footer {
+    }
+    .Ss-header {
+    }
+
+    .Ss-maincontent {
+    }
+  }
+}
+
+@media (min-width: 993px) and (max-width: 1199px) {
+  .Ss {
+    .Ss-footer {
+    }
+    .Ss-header {
+    }
+
+    .Ss-maincontent {
+    }
+  }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  .Ss {
+    .Ss-footer {
+    }
+    .Ss-header {
+    }
+
+    .Ss-maincontent {
+    }
+  }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+  .Ss {
+    .Ss-footer {
+    }
+    .Ss-header {
+    }
+
+    .Ss-maincontent {
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .Ss {
+    .Ss-footer {
+    }
+    .Ss-header {
+    }
+
+    .Ss-maincontent {
+    }
+  }
+}
+
+/* Custom container */
+.Ss-header {
+  .Ss-header-wrapper {
+    .container-full {
+      margin: 0 auto;
+      width: 100%;
+    }
+  }
+}
+
+.Ss-footer {
+  .Ss-footer-content {
+    .Ss-footer-content-copyright {
+      text-align: center;
+    }
+  }
+}
+
+.Ss-maincontent {
+  .Ss-maincontent-Landingpage {
+    .jumbotron {
+      position: relative;
+      background: url("https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTzl-5H7HulXU20flVDnF6fnsBJS_p4HNTLYoeF8j5TNzfOVG9k") center center;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      overflow: hidden;
+    }
+    .lead {
+      color: $white;
+    }
+    .jumbotron h1 {
+      color: $white;
+    }
+    .row-eq-height {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+    }
+  }
+}
+
+//for the footer to stay at the bottom
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+#container {
+  min-height: 100%;
+  position: relative;
+}
+
+#header {
+  padding: 10px;
+}
+
+#content {
+  padding: 10px;
+  padding-bottom: 60px; /* Height of the footer */
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px; /* Height of the footer */
 }

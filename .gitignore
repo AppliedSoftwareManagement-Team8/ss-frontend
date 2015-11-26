@@ -28,3 +28,7 @@ templates.js
 
 #webstorm
 .idea
+#eclipse
+.project
+# JDT-specific (Eclipse Java Development Tools)
+.classpath
