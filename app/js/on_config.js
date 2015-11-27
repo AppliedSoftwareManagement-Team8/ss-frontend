@@ -8,26 +8,34 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider) {
         .state('Home', {
             url: '/',
             views: {
-              "header": { templateUrl: 'main.header.html' },
-              "main": { templateUrl: 'maincontent.html' }
+                "header": {templateUrl: 'main.header.html'},
+                "main": {templateUrl: 'maincontent.html'}
             },
             title: 'Home',
         }).state('Signup', {
-            url: '/',
+            url: '/Signup',
             controller: 'SignupController as signupCtrl',
             views: {
-              "header": { templateUrl: 'main.header.html' },
-              "main": { templateUrl: 'signup.html' }
+                "header": {templateUrl: 'main.header.html'},
+                "main": {templateUrl: 'signup.html'}
             },
             title: 'Signup'
         }).state('Login', {
-            url: '/',
+            url: '/Login',
             controller: 'LoginController as loginCtrl',
             views: {
-              "header": { templateUrl: 'main.header.html' },
-              "main": { templateUrl: 'login.html' }
+                "header": {templateUrl: 'main.header.html'},
+                "main": {templateUrl: 'login.html'}
             },
             title: 'Login'
+        }).state('UserMain', {
+            url: '/UserMain',
+            controller: 'UserHomeController as userHomeCtrl',
+            views: {
+                "header": {templateUrl: 'user.header.html'},
+                "main": {templateUrl: 'user.main.html'}
+            },
+            title: 'Shop'
         });
 
 

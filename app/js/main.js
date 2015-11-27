@@ -6,6 +6,7 @@ require('bootstrap');
 
 // angular modules
 import 'angular-ui-router';
+import 'angular-messages';
 import './templates';
 import './filters';
 import './controllers';
@@ -15,6 +16,7 @@ import './directives';
 // create and bootstrap application
 const requires = [
   'ui.router',
+  'ngMessages',
   'templates',
   'app.filters',
   'app.controllers',

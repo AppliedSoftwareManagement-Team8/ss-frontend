@@ -1,72 +1,68 @@
 <div class="Ss-maincontent">
-    <div class="Ss-maincontent-Landingpage">
+    <div class="Ss-maincontent-Signup">
         <div class="container">
             <div class="row">
-                <div class="col-md-3 col-lg-3 col-sm-3">
-                </div>
-                <div class="col-md-6 col-lg-6 col-sm-6">
+                <!-- start of signup panel-->
+                <div class="col-lg-offset-3 col-md-offset-3 col-sm-offset-3 col-md-6 col-lg-6 col-sm-6">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h3 class="panel-title">Sign up</h3>
                         </div>
                         <div class="panel-body">
-                            <form class="form-horizontal">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <label for="exampleInputEmail1" class="col-sm-2 control-label">Email
-                                            address</label>
-
-                                        <div class="col-sm-10 input-group">
-                                            <input type="text" class="form-control" placeholder="BTH email address"
-                                                   aria-describedby="basic-addon2">
-                                            <span class="input-group-addon" id="basic-addon2">@bth.se</span>
+                            <form novalidate class="form-horizontal" name="signUpForm">
+                                <div class="form-group" ng-class="{ 'has-error': signUpForm.emailID.$touched && signUpForm.emailID.$invalid }">
+                                    <label for="signUpEmail" class="col-lg-2 control-label">Email address</label>
+                                    <div class="col-lg-10">
+                                        <div class="input-group">
+                                            <input name="emailID" type="text" id="signUpEmail" class="form-control" placeholder="BTH ID" aria-describedby="singEmailAddon"
+                                                   ng-model="user.emailID"
+                                                   ng-minlength="6"
+                                                   ng-maxlength="35"
+                                                   required>
+                                            <span class="input-group-addon" id="singEmailAddon">@student.bth.se</span>
+                                        </div>
+                                        <div class="help-block" ng-messages="signUpForm.emailID.$error" ng-show="signUpForm.emailID.$touched && !signUpForm.emailID.$pristine">
+                                            <div ng-messages-include="error.messages.html"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-class="{ 'has-error': signUpForm.password.$touched && signUpForm.password.$invalid }">
+                                    <label for="signUpPassword" class="col-lg-2 control-label">Password</label>
+                                    <div class="col-lg-10">
+                                        <input type="password" name="password" class="form-control" id="signUpPassword" placeholder="Password"
+                                               ng-model="user.password"
+                                               ng-minlength="8"
+                                               ng-maxlength="20"
+                                               ng-pattern='/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,20}/'
+                                               required>
+                                        <div class="help-block" ng-messages="signUpForm.password.$error" ng-show="signUpForm.password.$touched && !signUpForm.password.$pristine">
+                                            <div ng-messages-include="error.messages.html"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-class="{ 'has-error': signUpForm.re_password.$touched && signUpForm.re_password.$invalid }">
+                                    <label for="reSignUpPassword" class="col-lg-2 control-label">Retype Password</label>
+                                    <div class="col-lg-10">
+                                        <input type="password" name="re_password" class="form-control" id="reSignUpPassword" placeholder="Retype Password"
+                                               ng-model="user.re_password"
+                                               compare-to="signUpForm.password"
+                                               required>
+                                        <div class="help-block" ng-messages="signUpForm.re_password.$error" ng-show="signUpForm.re_password.$touched && !signUpForm.re_password.$pristine">
+                                            <div ng-messages-include="error.messages.html"></div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputUsername" class="col-sm-2 control-label">Username</label>
-
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="inputUsername"
-                                               placeholder="Enter your Username">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-
-                                    <div class="col-sm-10">
-                                        <input type="password" class="form-control" id="inputPassword3"
-                                               placeholder="Password">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputPassword4" class="col-sm-2 control-label">Retype Password</label>
-
-                                    <div class="col-sm-10">
-                                        <input type="password" class="form-control" id="inputPassword4"
-                                               placeholder="Password">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-offset-2 col-sm-10">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox"> Remember me
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-offset-2 col-sm-10">
-                                        <button type="submit" class="btn btn-primary" data-toggle="modal"
-                                                data-target="#myModal">Submit
-                                        </button>
+                                    <div class="col-lg-offset-2 col-lg-10">
+                                        <button type="submit" class="btn btn-primary" ng-disabled="signUpForm.$invalid">Submit</button>
                                     </div>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
+                <!-- end of panel-->
             </div>
         </div>
     </div>
+</div>
