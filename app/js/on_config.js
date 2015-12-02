@@ -27,14 +27,22 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider) {
                 "header": {templateUrl: 'main.header.html'},
                 "main": {templateUrl: 'login.html'}
             },
-            title: 'Login'
+        title: 'Login'
+        }).state('Activation', {
+            url: '/Activation',
+            controller: 'ActivationController as activationCtrl',
+            views: {
+                "header": {templateUrl: 'main.header.html'},
+                "main": {templateUrl: 'activation.html'}
+            },
+            title: 'Activation'
         }).state('UserMain', {
             url: '/UserMain',
             controller: 'UserHomeController as userHomeCtrl',
             views: {
                 "header": {templateUrl: 'user.header.html'},
                 "main": {templateUrl: 'user.main.html'}
-            },
+                },           
             title: 'Shop'
         });
 
