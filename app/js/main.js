@@ -12,6 +12,8 @@ import './filters';
 import './controllers';
 import './services';
 import './directives';
+import 'angular-animate';
+import 'angular-ui-bootstrap';
 
 // create and bootstrap application
 const requires = [
@@ -22,6 +24,8 @@ const requires = [
   'app.controllers',
   'app.services',
   'app.directives'
+  'ngAnimate',
+   'ui.bootstrap',
 ];
 
 // mount on window for testing
