@@ -1,5 +1,5 @@
 <!-- Start of the main content for user home page-->
-<div class="container">
+<div class="container-fluid">
    <!-- start of the categories panel-->
    <div class="col-md-8 col-lg-8 col-sm-8">
       <div class="panel panel-default">
@@ -9,12 +9,9 @@
          <div class="panel-body">
             <div class="col-md-6 col-lg-6 col-sm-6">
                <div class="row row-eq-height">
-                  <div flow-init="{target: '/upload'}"
-                     flow-files-submitted="$flow.upload()"
-                     flow-file-success="$file.msg = $message">
+                  <div class="circle" flow-init="{target: '/upload'}" flow-files-submitted="$flow.upload()" flow-file-success="$file.msg = $message">
                      <input type="file" flow-btn/>
-                     Input OR Other element as upload button
-                     <span class="btn" flow-btn>Upload File</span>
+                     <span class="btn" flow-btn></span>
                      <table>
                         <tr ng-repeat="file in $flow.files">
                            <td>{{$index+1}}</td>
@@ -78,6 +75,7 @@
                      <div class="col-lg-10">
                         <textarea  rows="3" name="UserAddress" class="form-control" id="UserAddress" placeholder="Optional address field"
                            ng-model="user.UserAddress">
+                           </textarea>
                         <div class="help-block" ng-messages="UserProfileForm.UserAddress.$error" ng-show="UserProfileForm.UserAddress.$touched && !UserProfileForm.UserAddress.$pristine">
                            <div ng-messages-include="error.messages.html"></div>
                         </div>

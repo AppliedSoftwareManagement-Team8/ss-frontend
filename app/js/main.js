@@ -23,10 +23,11 @@ const requires = [
   'app.filters',
   'app.controllers',
   'app.services',
-  'app.directives'
+  'app.directives',
   'ngAnimate',
-   'ui.bootstrap',
+  'ui.bootstrap'
 ];
+
 
 // mount on window for testing
 window.app = angular.module('app', requires);
@@ -38,3 +39,4 @@ angular.module('app').config(require('./on_config'));
 angular.module('app').run(require('./on_run'));
 
 angular.bootstrap(document, ['app']);
+

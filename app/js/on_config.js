@@ -58,7 +58,7 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider) {
             url: '/UserProfile',
             controller: 'RatingController as ratingCtrl',
             views: {
-                "header": {templatUrl: 'user.header.html'},
+                "header": {templateUrl: 'user.header.html'},
                 "main": {templateUrl: 'user.profile.html'}
             },
             title: 'UserProfile'
