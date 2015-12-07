@@ -143,3 +143,21 @@ body {
   width:100%;
   height:60px;   /* Height of the footer */
 }
+// from 5/11/2015
+
+.pagination{
+  margin-top:0px;
+}
+.rating{
+  color: #a9a9a9;
+  margin: 0;
+  padding: 0;
+}
+
+ul.rating {
+  display: inline-block;
+}
+
+.rating li {
+  list-style-type: none;
+  }

@@ -44,6 +44,24 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider) {
                 "main": {templateUrl: 'user.main.html'}
                 },           
             title: 'Shop'
+        }).state('UserProduct', {
+            url: '/UserProduct',
+            controller: 'UserHomeController as userHomeCtrl',
+            views: {
+                "header": {templateUrl: 'user.header.html'},
+                "main": {templateUrl: 'user.Products.html'}
+            },
+            title: 'Product'
+        })
+      
+        .state('UserProfile', {
+            url: '/UserProfile',
+            controller: 'RatingController as ratingCtrl',
+            views: {
+                "header": {templatUrl: 'user.header.html'},
+                "main": {templateUrl: 'user.profile.html'}
+            },
+            title: 'UserProfile'
         });
 
 

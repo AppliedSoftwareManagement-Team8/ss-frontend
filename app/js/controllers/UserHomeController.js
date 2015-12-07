@@ -1,10 +1,10 @@
 'use strict';
 
-function UserHomeController($scope) {
+function UserHomeController() {
 
     // ViewModel
     const vm = this;
-}
+ }
 
 export default {
     name: 'UserHomeController',

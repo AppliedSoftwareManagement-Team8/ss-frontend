@@ -1,0 +1,153 @@
+
+<!-- Start of the main content for user home page-->
+<div class="container-fluid" ng-controller="UserHomeController">
+    <!-- start of the categories panel-->
+    <div class="col-md-8 col-lg-8 col-sm-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Products</h3>
+            </div>
+            <div class="panel-body">
+                <div class="container">
+                <div class="col-md-6 col-lg-6 col-sm-6">
+                <!-- start of pagination-->
+                <nav>
+  <ul class="pagination">
+    <li class=""><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+    <li class=""><a href="#">2 <span class="sr-only">(current)</span></a></li>
+    <li class=""><a href="#">3 <span class="sr-only">(current)</span></a></li>
+  </ul>
+</nav>
+</div>
+<div class="col-md-6 col-lg-6 col-sm-6 dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+   OrderBy
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    <li><a href="#" ng-click="orderByAttribute = 'position'">Soon to expire</a></li>
+    <li><a href="#">Old to new</a></li>
+    <li><a href="#">Lowest base price</a></li>
+  </ul>
+</div>
+<!-- end of pagination-->
+<!-- start of the prodcut page-->
+                    <div class="row row-eq-height">
+                        <div class="col-md-8 col-lg-8 col-sm-8">
+                            <div class="col-lg-4">
+                               <div class="thumbnail">
+                                    <img src="http://rohinishops.com/admin/img/1427523406467700.jpg">         
+                                     <div class="wrapper">
+                                     <div class="caption post-content">
+
+                                        <h3>Cycle</h3>
+                                        <p>Price: 1000krones</p> 
+
+                                    </div>
+                                </div>
+                             </div>
+                            </div>
+                            <div class="col-lg-4">
+                                   <div class="thumbnail">
+                                    <img src="http://im.hunt.in/cg/Jamshedpur/City-Guide/household.jpg">        
+                                     <div class="wrapper">
+                                     <div class="caption post-content">
+
+                                        <h3>Volvo car</h3>
+                                        <p>Price: 10000krones</p> 
+
+                                    </div>
+                                </div>
+                             </div>
+                            </div>
+                            <div class="col-lg-4">
+                                   <div class="thumbnail">
+                                     <img src="http://www.chenforms.com/images/slide6.jpg">         
+                                     <div class="wrapper">
+                                     <div class="caption post-content">
+
+                                        <h3>Segway</h3>
+                                        <p>Price: 2000krones</p> 
+
+                                    </div>
+                                </div>
+                             </div>
+                            </div>
+                        </div>
+                        <div class="row row-eq-height">
+                            <div class="col-md-8 col-lg-8 col-sm-8">
+                                <div class="col-lg-4">
+                                    <div class="thumbnail">
+                                    <img src="http://im.hunt.in/cg/Jamshedpur/City-Guide/household.jpg">        
+                                     <div class="wrapper">
+                                     <div class="caption post-content">
+
+                                        <h3>Volvo car</h3>
+                                        <p>Price: 10000krones</p> 
+
+                                    </div>
+                                </div>
+                             </div>
+                                </div>
+                                <div class="col-lg-4">
+                                  <div class="thumbnail">
+                                    <img src="http://im.hunt.in/cg/Jamshedpur/City-Guide/household.jpg">        
+                                     <div class="wrapper">
+                                     <div class="caption post-content">
+
+                                        <h3>Volvo car</h3>
+                                        <p>Price: 10000krones</p> 
+
+                                    </div>
+                                </div>
+                             </div>
+                                </div>
+                                <div class="col-lg-4">
+                                  <div class="thumbnail">
+                                    <img src="http://im.hunt.in/cg/Jamshedpur/City-Guide/household.jpg">        
+                                     <div class="wrapper">
+                                     <div class="caption post-content">
+
+                                        <h3>Volvo car</h3>
+                                        <p>Price: 10000krones</p> 
+
+                                    </div>
+                                </div>
+                             </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end of product page-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <!-- end of category panel-->
+    <!-- start of my bids and my products panel-->
+   <div class="col-md-4 col-lg-4 col-sm-4">
+        <div>
+            <div class="panel panel-default">
+                <div class="panel-heading bth-group">
+                    <a class="btn btn-primary">My bids</a>
+                    <a class="btn btn-primary">Myproducts</a>
+
+                    <div class="panel-body">
+                      <div ui-view="user.list"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end of panel-->
+
+    </div>
+
+
+
+
+
+
+
