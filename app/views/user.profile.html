@@ -9,7 +9,7 @@
          <div class="panel-body">
             <div class="col-md-6 col-lg-6 col-sm-6">
                <div class="row row-eq-height">
-                  <div class="circle" flow-init="{target: '/upload'}" flow-files-submitted="$flow.upload()" flow-file-success="$file.msg = $message">
+                  <div class="circle" flow-init="{target: '/upload'}" flow-files-submitted="$flow.upload()" flow-file-success="$file.msg = $message">Upload picture
                      <input type="file" flow-btn/>
                      <span class="btn" flow-btn></span>
                      <table>
@@ -23,9 +23,7 @@
                </div>
                <h3>Rating</h3>
                <div ng-init="rating = star.rating + 1"></div>
-               <star-rating></star-rating>
-               <div class="star-rating"  rating-value="rating"
-                  data-max="10" on-rating-selected="rateFunction(rating)">
+               <div  class="star-rating" star-rating rating-value="rating" data-max="10" on-rating-selected="rateFunction(rating)">
                </div>
             </div>
             <div class="col-md-6 col-lg-6 col-sm-6">
@@ -33,13 +31,11 @@
                   <div class="form-group" ng-class="{ 'has-error': UserProfileForm.UserName.$touched && UserProfileForm.UserName.$invalid }">
                      <label for="UserName" class="col-lg-2 control-label">User Name</label>
                      <div class="col-lg-10">
-                        <div class="input-group">
                            <input name="UserName" type="text" id="UserName" class="form-control" placeholder="Full Name" aria-describedby="singEmailAddon"
                               ng-model="user.Name"
                               ng-minlength="2"
                               ng-maxlength="35"
                               required>
-                        </div>
                         <div class="help-block" ng-messages="UserProfileForm.UserName.$error" ng-show="UserProfileForm.UserName.$touched && !UserProfileForm.UserName.$pristine">
                            <div ng-messages-include="error.messages.html"></div>
                         </div>
@@ -83,7 +79,7 @@
                   </div>
                   <div class="form-group">
                      <div class="col-lg-10">
-                        <button ui-sref="" type="submit" class="btn btn-primary" ng-disabled="UserAddress.$invalid">Submit</button>
+                        <button type="submit" class="btn btn-primary" ng-disabled="UserProfileForm.$invalid">Save</button>
                      </div>
                   </div>
                </form>

@@ -62,6 +62,15 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider) {
                 "main": {templateUrl: 'user.profile.html'}
             },
             title: 'UserProfile'
+        })
+        .state('UserSellProduct', {
+            url: '/UserSellProduct',
+            controller: 'RatingController as ratingCtrl',
+            views: {
+                "header": {templateUrl: 'user.header.html'},
+                "main": {templateUrl: 'user.sellProduct.html'}
+            },
+            title: 'UserSellProduct'
         });
 
 
