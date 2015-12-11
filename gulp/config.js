@@ -9,7 +9,7 @@ export default {
   buildDir: './build/',
 
   styles: {
-    src: 'app/styles/**/*.scss',
+    src: 'app/styles/**/*.css',
     dest: 'build/css',
     prodSourcemap: false,
     sassIncludePaths: []
@@ -17,6 +17,11 @@ export default {
   
   bootstrap: {
     src: './node_modules/bootstrap/dist/css/*.min.css',
+    dest: 'build/vendor/'
+  },
+
+  awesome: {
+    src: './node_modules/font-awesome/css/*.min.css',
     dest: 'build/vendor/'
   },
 
@@ -32,6 +37,10 @@ export default {
 
   fonts: {
     src: ['app/fonts/**/*'],
+    dest: 'build/fonts'
+  },
+  awesomeFonts: {
+    src: ['./node_modules/font-awesome/fonts/**/*'],
     dest: 'build/fonts'
   },
   bootstrapFonts: {

@@ -56,16 +56,20 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider) {
       
         .state('UserProfile', {
             url: '/UserProfile',
-            controller: 'RatingController as ratingCtrl',
+            controller: 'UserProfileController as userProfileCtrl',
             views: {
                 "header": {templateUrl: 'user.header.html'},
-                "main": {templateUrl: 'user.profile.html'}
+                "main": {templateUrl: 'user.profile.html'},
+                "rating@UserProfile": {
+                    templateUrl: 'user.profile.rating.html',
+                    controller: 'UserRatingController as ratingCtrl'
+                }
             },
             title: 'UserProfile'
         })
         .state('UserSellProduct', {
             url: '/UserSellProduct',
-            controller: 'RatingController as ratingCtrl',
+            controller: 'SellProductController as sellProductCtrl',
             views: {
                 "header": {templateUrl: 'user.header.html'},
                 "main": {templateUrl: 'user.sellProduct.html'}

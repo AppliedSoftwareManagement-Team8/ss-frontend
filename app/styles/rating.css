@@ -1,22 +1,25 @@
-.rating{
-  color: #a9a9a9;
+.star-rating {
   margin: 0;
   padding: 0;
-}
-
-ul.rating {
   display: inline-block;
 }
-
-.rating li {
+.star-rating .star {
+  padding: 1px;
+  color: #ddd;
+  font-size: 20px;
+  text-shadow: .05em .05em #aaa;
   list-style-type: none;
   display: inline-block;
-  padding: 1px;
-  text-align: center;
-  font-weight: bold;
   cursor: pointer;
 }
 
-.rating .filled {
-  color: #21568b;
+.star-rating .star.hovered {
+  color: #90a9dd;
+}
+
+.star-rating .star.filled {
+  color: #fd0;
+}
+.star-rating.readonly .star.filled {
+  color: #666;
 }

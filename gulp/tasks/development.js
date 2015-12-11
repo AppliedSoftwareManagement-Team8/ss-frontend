@@ -7,6 +7,15 @@ gulp.task('dev', ['clean'], function(cb) {
 
   global.isProd = false;
 
-  runSequence(['styles', 'bootstrap-styles', 'bootstrap-fonts', 'images', 'fonts', 'views', 'browserify'], 'watch', cb);
-
+  runSequence([
+    'styles',
+    'bootstrap-styles',
+    'bootstrap-fonts',
+    'awesome-styles',
+    'awesome-fonts',
+    'images',
+    'fonts',
+    'views',
+    'browserify'
+  ], 'watch', cb);
 });

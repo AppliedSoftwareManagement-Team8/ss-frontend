@@ -1,5 +1,10 @@
-		<ul class="rating">
-		<li ng-repeat="star in stars" ng-class="star" ng-click="toggle($index)">
-			
-		</li>
-		</ul>
+<ul class="star-rating" ng-class="{readonly: readonly}">
+    <li class="star"
+        ng-repeat="star in stars"
+        ng-class="{filled: star.filled, hovered: star.hovered}"
+        ng-mouseleave="removeHover()"
+        ng-mouseenter="hoverStars($index)"
+        ng-click="toggle($index)">
+        <i class="fa fa-star"></i>
+    </li>
+</ul>
