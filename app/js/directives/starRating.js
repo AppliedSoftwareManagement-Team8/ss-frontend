@@ -23,6 +23,7 @@ function starRating() {
             };
 
             scope.hoverStars = function (index) {
+              if (scope.readonly === undefined || scope.readonly === false){
                 for (var i = 0; i < scope.max; i++) {
                     if (i <= (index)) {
                         scope.stars[i].hovered = true;
@@ -32,6 +33,7 @@ function starRating() {
                         scope.stars[i].filled = i < scope.ratingValue;
                     }
                 }
+              }
             };
             scope.removeHover = function () {
                 for (var i = 0; i < scope.max; i++) {
@@ -41,10 +43,12 @@ function starRating() {
             };
 
             scope.toggle = function (index) {
+              if (scope.readonly === undefined || scope.readonly === false){
                 scope.ratingValue = index + 1;
                 scope.onRatingSelected({
                     rating: index + 1
                 });
+              }
             };
 
             scope.$watch('ratingValue',
