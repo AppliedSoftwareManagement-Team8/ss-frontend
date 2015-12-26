@@ -14,20 +14,21 @@ import './services';
 import './directives';
 import 'angular-animate';
 import 'angular-ui-bootstrap';
+import 'ng-flow';
 
 // create and bootstrap application
 const requires = [
-  'ui.router',
-  'ngMessages',
-  'templates',
-  'app.filters',
-  'app.controllers',
-  'app.services',
-  'app.directives',
-  'ngAnimate',
-  'ui.bootstrap'
+    'ui.router',
+    'ngMessages',
+    'templates',
+    'app.filters',
+    'app.controllers',
+    'app.services',
+    'app.directives',
+    'ngAnimate',
+    'ui.bootstrap',
+    'flow'
 ];
-
 
 // mount on window for testing
 window.app = angular.module('app', requires);

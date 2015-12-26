@@ -4,6 +4,8 @@ function UserProfileController() {
 
     // ViewModel
     const vm = this;
+  
+
 }
 
 export default {

@@ -1,0 +1,148 @@
+          <div class="panel panel-default">
+         <div class="panel-heading bth-group">
+                     <div class="btn-group">
+       <button class="btn btn-primary" ng-click="showme=true">My Bids</button>
+  <button class="btn btn-primary" ng-click="showme=false">My Products</button> 
+        
+    </div>
+
+                    <div class="panel-body">
+                    <div class="wrapper">
+
+                        <script type="text/ng-template" id="group-template.html">
+                            <div class="panel {{panelClass || 'panel-default'}}">
+
+                                <h4 class="panel-title" style="color:#fa39c3">
+                                    <a href tabindex="0" class="accordion-toggle" ng-click="toggleOpen()"
+                                       uib-accordion-transclude="heading"><span
+                                            ng-class="{'text-muted': isDisabled}">{{heading}}</span></a>
+                                </h4>
+
+                                <div class="panel-collapse collapse" uib-collapse="!isOpen">
+                                    <div class="panel-body" style="text-align: right" ng-transclude></div>
+                                </div>
+                            </div>
+                        </script>
+
+                        <uib-accordion ng-hide="showme" close-others="oneAtATime">
+                            <uib-accordion-group heading="Product x">
+                                <button type="button" class="btn btn-default btn-sm" ng-click="addItem()">View Product
+                                </button>
+                                <button type="button" class="btn btn-default btn-sm" ng-click="deleteItem()">delete Product
+                                </button>
+                            </uib-accordion-group>
+                             <uib-accordion-group heading="Product Y"
+                                                 >
+                                <button type="button" class="btn btn-default btn-sm" ng-click="addItem()">View Product
+                                </button>
+                                <button type="button" class="btn btn-default btn-sm" ng-click="deleteItem()">delete Product
+                                </button>
+                            </uib-accordion-group> 
+                            <uib-accordion-group heading="Product Z"
+                                                 >
+                                <button type="button" class="btn btn-default btn-sm" ng-click="addItem()">View Product
+                                </button>
+                                <button type="button" class="btn btn-default btn-sm" ng-click="deleteItem()">delete Product
+                                </button>
+                            </uib-accordion-group> 
+                            <uib-accordion-group heading="Product L"
+                                                 >
+                                <button type="button" class="btn btn-default btn-sm" ng-click="addItem()">View Product
+                                </button>
+                                <button type="button" class="btn btn-default btn-sm" ng-click="deleteItem()">delete Product
+                                </button>
+                            </uib-accordion-group> 
+                            <uib-accordion-group heading="Product M"
+                                                >
+                                <button type="button" class="btn btn-default btn-sm" ng-click="addItem()">View Product
+                                </button>
+                                <button type="button" class="btn btn-default btn-sm" ng-click="deleteItem()">delete Product
+                                </button>
+                            </uib-accordion-group>
+                             <uib-accordion-group heading="Product N"
+                                                >
+                                <button type="button" class="btn btn-default btn-sm" ng-click="addItem()">View Product
+                                </button>
+                                <button type="button" class="btn btn-default btn-sm" ng-click="deleteItem()">delete Product
+                                </button>
+                            </uib-accordion-group> 
+                            <uib-accordion-group heading="Product P"
+                                                >
+                                <button type="button" class="btn btn-default btn-sm" ng-click="addItem()">View Product
+                                </button>
+                                <button type="button" class="btn btn-default btn-sm" ng-click="deleteItem()">delete Product
+                                </button>
+                            </uib-accordion-group>
+                            <uib-accordion-group heading="{{group.title}}" ng-repeat="group in groups">
+                                {{group.content}}
+                            </uib-accordion-group>
+                            <uib-accordion-group heading="Product Q" >
+                                <button type="button" class="btn btn-default btn-sm" ng-click="addItem()">View Product
+                                </button>
+                                <button type="button" class="btn btn-default btn-sm" ng-click="deleteItem()">delete Product
+                                </button>
+                                <div ng-repeat="item in items">{{item}}</div>
+                            </uib-accordion-group>
+                        </uib-accordion>
+                        <div>
+                              <script type="text/ng-template" id="group-template.html">
+                            <div class="panel {{panelClass || 'panel-default'}}">
+
+                                <h4 class="panel-title" style="color:#fa39c3">
+                                    <a href tabindex="0" class="accordion-toggle" ng-click="toggleOpen()"
+                                       uib-accordion-transclude="heading"><span
+                                            ng-class="{'text-muted': isDisabled}">{{heading}}</span></a>
+                                </h4>
+
+                                <div class="panel-collapse collapse" uib-collapse="!isOpen">
+                                    <div class="panel-body" style="text-align: right" ng-transclude></div>
+                                </div>
+                            </div>
+                        </script>
+
+                        <uib-accordion ng-show="showme" close-others="oneAtATime">
+                            <uib-accordion-group heading="Product Y"
+                                                 >
+                               <ul style="list-style-type:none">
+  <li>Current Bid : {{sidebarCtrl.CurrB}}</li>
+  <li>My Bid: {{sidebarCtrl.MyB}}</li>
+  <li>Bid Expiry date: {{sidebarCtrl.Exp}}</li>
+</ul> 
+                            </uib-accordion-group>
+                            <uib-accordion-group heading="Product Y"
+                                                >
+                               <ul style="list-style-type:none">
+  <li>Current Bid : {{sidebarCtrl.CurrB}}</li>
+  <li>My Bid: {{sidebarCtrl.MyB}}</li>
+  <li>Bid Expiry date: {{sidebarCtrl.Exp}}</li>
+</ul> 
+                            </uib-accordion-group>
+                            <uib-accordion-group heading="Product Y"
+                                                >
+                               <ul style="list-style-type:none">
+  <li>Current Bid : {{sidebarCtrl.CurrB}}</li>
+  <li>My Bid: {{sidebarCtrl.MyB}}</li>
+  <li>Bid Expiry date: {{sidebarCtrl.Exp}}</li>
+</ul> 
+                            </uib-accordion-group>
+                             <uib-accordion-group heading="Product Y"
+                                                >
+                               <ul style="list-style-type:none">
+  <li>Current Bid : {{sidebarCtrl.CurrB}}</li>
+  <li>My Bid: {{sidebarCtrl.MyB}}</li>
+  <li>Bid Expiry date: {{sidebarCtrl.Exp}}</li>
+</ul> 
+                            </uib-accordion-group> <uib-accordion-group heading="Product Y"
+                                                >
+                               <ul style="list-style-type:none">
+  <li>Current Bid : {{sidebarCtrl.CurrB}}</li>
+  <li>My Bid: {{sidebarCtrl.MyB}}</li>
+  <li>Bid Expiry date: {{sidebarCtrl.Exp}}</li>
+</ul> 
+                            </uib-accordion-group>
+                        </uib-accordion>
+                        </div>
+  </div> 
+                    </div>
+                </div>               
+            </div>

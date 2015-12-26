@@ -4,8 +4,8 @@
       <form class="navbar-form navbar-left" role="search">
        <a ui-sref="UserMain" class="btn btn-default" aria-label="Left Align">
                     <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-                </a>
-        <div class="form-group">
+                </a><span style="color:white"> Welcome Kathyayani!</span>
+        <div class="form-group" style="margin-left:250px;">
           <div class="input-group">
               <input type="text" class="form-control" ng-model="SearchQuery" placeholder="Search for product">
               <span class="input-group-btn">
@@ -17,7 +17,7 @@
         <ul class="nav navbar-nav navbar-right">
                 <a class="btn btn-default navbar-btn" ui-sref="UserProfile" > <span class="glyphicon glyphicon-user" aria-hidden="true"></span>Profile</a>
                 <a class="btn btn-default navbar-btn" ui-sref="UserSellProduct" > <span class="glyphicon glyphicon-share" aria-hidden="true"></span>Sell Product</a>
-                <a class="btn btn-default navbar-btn" > <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>Logout</a>
+                <a ui-sref="Home" class="btn btn-default navbar-btn" > <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>Logout</a>
             </ul>
     </div>
   </div>

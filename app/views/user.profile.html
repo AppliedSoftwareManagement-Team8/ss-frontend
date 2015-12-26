@@ -1,103 +1,117 @@
 <!-- Start of the main content for user home page-->
 <div class="container-fluid">
-   <!-- start of the categories panel-->
-   <div class="col-md-8 col-lg-8 col-sm-8">
-      <div class="panel panel-default">
-         <div class="panel-heading">
-            <h3 class="panel-title">User Profile</h3>
-         </div>
-         <div class="panel-body">
-            <div class="col-md-6 col-lg-6 col-sm-6">
-               <div class="row row-eq-height">
-                  <div class="circle" flow-init="{target: '/upload'}" flow-files-submitted="$flow.upload()" flow-file-success="$file.msg = $message">Upload picture
-                     <input type="file" flow-btn/>
-                     <span class="btn" flow-btn></span>
-                     <table>
-                        <tr ng-repeat="file in $flow.files">
-                           <td>{{$index+1}}</td>
-                           <td>{{file.name}}</td>
-                           <td>{{file.msg}}</td>
-                        </tr>
-                     </table>
-                  </div>
-               </div>
-               <div ui-view="rating"></div>
+    <!-- start of the categories panel-->
+    <div class="col-md-8 col-lg-8 col-sm-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">User Profile</h3>
             </div>
-            <div class="col-md-6 col-lg-6 col-sm-6">
-               <form novalidate class="form-horizontal" name="UserProfileForm">
-                  <div class="form-group" ng-class="{ 'has-error': UserProfileForm.UserName.$touched && UserProfileForm.UserName.$invalid }">
-                     <label for="UserName" class="col-lg-2 control-label">User Name</label>
-                     <div class="col-lg-10">
-                           <input name="UserName" type="text" id="UserName" class="form-control" placeholder="Full Name" aria-describedby="singEmailAddon"
-                              ng-model="user.Name"
-                              ng-minlength="2"
-                              ng-maxlength="35"
-                              required>
-                        <div class="help-block" ng-messages="UserProfileForm.UserName.$error" ng-show="UserProfileForm.UserName.$touched && !UserProfileForm.UserName.$pristine">
-                           <div ng-messages-include="error.messages.html"></div>
+            <div class="panel-body">
+                <div class="col-md-6 col-lg-6 col-sm-6">
+                    <div class="row row-eq-height">
+                        <div class="container-fluid" flow-init>
+                            <div>
+                                <div class="thumbnail" ng-hide="$flow.files.length">
+                                    <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image"/>
+                                </div>
+                                <div class="thumbnail" ng-show="$flow.files.length">
+                                    <img flow-img="$flow.files[0]"/>
+                                </div>
+                                <hr class="soften"/>
+                                <div>
+                                    <input class="btn btn-primary" type="file" ng-hide="$flow.files.length" flow-btn/>
+                                    <p>
+                                        Only PNG,GIF,JPG files allowed.
+                                    </p>
+                                </div>
+                                <hr class="soften"/>
+                                <div>
+                                    <span class="btn btn-danger" ng-show="$flow.files.length" ng-click="$flow.cancel()">Remove</span>
+                                </div>
+                            </div>
                         </div>
-                     </div>
-                  </div>
-                  <div class="form-group" ng-class="{ 'has-error': UserProfileForm.UserEmail.$touched && UserProfileForm.UserEmail.$invalid }">
-                     <label for="UserEmail" class="col-lg-2 control-label">email-address</label>
-                     <div class="col-lg-10">
-                        <input type="email" name="UserEmail" class="form-control" id="UserEmail" placeholder="email-address"
-                           ng-model="user.UserEmail"
-                           ng-minlength="6"
-                           ng-maxlength="20"
-                           ng-email
-                           required>
-                        <div class="help-block" ng-messages="UserProfileForm.UserEmail.$error" ng-show="UserProfileForm.UserEmail.$touched && UserProfileForm.UserEmail.$pristine">
-                           <div ng-messages-include="error.messages.html"></div>
+                    </div>
+                    <div ui-view="rating"></div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-sm-6">
+                    <form novalidate class="form-horizontal" name="UserProfileForm">
+                        <div class="form-group"
+                             ng-class="{ 'has-error': UserProfileForm.UserName.$touched && UserProfileForm.UserName.$invalid }">
+                            <label for="UserName" class="col-lg-2 control-label">User Name</label>
+                            <div class="col-lg-10">
+                                <input name="UserName" type="text" id="UserName" class="form-control"
+                                       placeholder="Full Name" aria-describedby="singEmailAddon"
+                                       ng-model="user.Name"
+                                       ng-minlength="2"
+                                       ng-maxlength="35"
+                                       required>
+                                <div class="help-block" ng-messages="UserProfileForm.UserName.$error"
+                                     ng-show="UserProfileForm.UserName.$touched && !UserProfileForm.UserName.$pristine">
+                                    <div ng-messages-include="error.messages.html"></div>
+                                </div>
+                            </div>
                         </div>
-                     </div>
-                  </div>
-                  <div class="form-group" ng-class="{ 'has-error': UserProfileForm.MobileNO.$touched && UserProfileForm.MobileNO.$invalid }">
-                     <label for="MobileNO" class="col-lg-2 control-label">mobile number</label>
-                     <div class="col-lg-10">
-                        <input type="text" name="MobileNO" class="form-control" id="MobileNO" placeholder="Optional mobile number"
-                           ng-model="user.MobileNO"
-                           ng-pattern="/^[0-9]{11}$/">
-                        <div class="help-block" ng-messages="UserProfileForm.MobileNO.$error" ng-show="UserProfileForm.MobileNO.$touched && !UserProfileForm.MobileNO.$pristine">
-                           <div ng-messages-include="error.user.messages.html"></div>
+                        <div class="form-group"
+                             ng-class="{ 'has-error': UserProfileForm.UserEmail.$touched && UserProfileForm.UserEmail.$invalid }">
+                            <label for="UserEmail" class="col-lg-2 control-label">email-address</label>
+                            <div class="col-lg-10">
+                                <input type="email" name="UserEmail" class="form-control" id="UserEmail"
+                                       placeholder="email-address"
+                                       ng-model="user.UserEmail"
+                                       ng-minlength="6"
+                                       ng-maxlength="20"
+                                       ng-email
+                                       required>
+                                <div class="help-block" ng-messages="UserProfileForm.UserEmail.$error"
+                                     ng-show="UserProfileForm.UserEmail.$touched && UserProfileForm.UserEmail.$pristine">
+                                    <div ng-messages-include="error.messages.html"></div>
+                                </div>
+                            </div>
                         </div>
-                     </div>
-                  </div>
-                  <div class="form-group" ng-class="{ 'has-error': UserProfileForm.UserAddress.$touched && UserProfileForm.UserAddress.$invalid }">
-                     <label for="UserAddress" class="col-lg-2 control-label">Address</label>
-                     <div class="col-lg-10">
-                        <textarea  rows="3" name="UserAddress" class="form-control" id="UserAddress" placeholder="Optional address field"
-                           ng-model="user.UserAddress">
+                        <div class="form-group"
+                             ng-class="{ 'has-error': UserProfileForm.MobileNO.$touched && UserProfileForm.MobileNO.$invalid }">
+                            <label for="MobileNO" class="col-lg-2 control-label">mobile number</label>
+                            <div class="col-lg-10">
+                                <input type="text" name="MobileNO" class="form-control" id="MobileNO"
+                                       placeholder="Optional mobile number"
+                                       ng-model="user.MobileNO"
+                                       ng-pattern="/^[0-9]{11}$/">
+                                <div class="help-block" ng-messages="UserProfileForm.MobileNO.$error"
+                                     ng-show="UserProfileForm.MobileNO.$touched && !UserProfileForm.MobileNO.$pristine">
+                                    <div ng-messages-include="error.user.messages.html"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group"
+                             ng-class="{ 'has-error': UserProfileForm.UserAddress.$touched && UserProfileForm.UserAddress.$invalid }">
+                            <label for="UserAddress" class="col-lg-2 control-label">Address</label>
+                            <div class="col-lg-10">
+                        <textarea rows="3" name="UserAddress" class="form-control" id="UserAddress"
+                                  placeholder="Optional address field"
+                                  ng-model="user.UserAddress">
                            </textarea>
-                        <div class="help-block" ng-messages="UserProfileForm.UserAddress.$error" ng-show="UserProfileForm.UserAddress.$touched && !UserProfileForm.UserAddress.$pristine">
-                           <div ng-messages-include="error.messages.html"></div>
+                                <div class="help-block" ng-messages="UserProfileForm.UserAddress.$error"
+                                     ng-show="UserProfileForm.UserAddress.$touched && !UserProfileForm.UserAddress.$pristine">
+                                    <div ng-messages-include="error.messages.html"></div>
+                                </div>
+                            </div>
                         </div>
-                     </div>
-                  </div>
-                  <div class="form-group">
-                     <div class="col-lg-10">
-                        <button type="submit" class="btn btn-primary" ng-disabled="UserProfileForm.$invalid">Save</button>
-                     </div>
-                  </div>
-               </form>
+                        <div class="form-group">
+                            <div class="col-lg-10">
+                                <button type="submit" class="btn btn-primary" ng-disabled="UserProfileForm.$invalid"
+                                        example-directive>Save
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-         </div>
-      </div>
-   </div>
-   <!-- end of category panel-->
-   <!-- start of my bids and my products panel-->
-   <div class="col-md-4 col-lg-4 col-sm-4">
-      <div>
-         <div class="panel panel-default">
-            <div class="panel-heading bth-group">
-               <a class="btn btn-primary">My bids</a>
-               <a class="btn btn-primary">Myproducts</a>
-               <div class="panel-body">
-                  <div ui-view="user.list"></div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-   <!-- end of panel-->
+        </div>
+    </div>
+    <!-- end of category panel-->
+    <!-- start of my bids and my products panel-->
+  <div class="col-md-4 col-lg-4 col-sm-4">
+       <div ui-view="list"></div>
+    </div>
+    <!-- end of panel-->
 </div>

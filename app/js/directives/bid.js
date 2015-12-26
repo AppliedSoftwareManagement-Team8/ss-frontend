@@ -1,22 +1,22 @@
 'use strict';
 
-function ExampleDirective() {
+function BidDirective() {
 
   return {
     restrict: 'EA',
     scope: {
       title: '@',
-      message: '@exampleDirective'
+      message: '@BidDirective'
     },
     link: (scope, element) => {
       element.on('click', () => {
-        window.alert('Changes are Saved ' + scope.message);
+        window.alert('Value is accepted' + scope.message);
       });
     }
   };
 }
 
 export default {
-  name: 'exampleDirective',
-  fn: ExampleDirective
+  name: 'bidDirective',
+  fn: BidDirective
 };

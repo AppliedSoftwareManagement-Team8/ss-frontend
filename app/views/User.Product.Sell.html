@@ -1,0 +1,73 @@
+<!-- Start of the main content for user home page-->
+<div class="container-fluid">
+    <!-- start of the categories panel-->
+    <div class="col-md-8 col-lg-8 col-sm-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Name of the product</h3>
+            </div>
+            <div class="panel-body">
+              
+                    <uib-carousel interval="myInterval" no-wrap="noWrapSlides">
+                        <uib-slide ng-repeat="slide in productCtrl.slides" active="slide.active">
+                            <img ng-src="{{slide.image}}" style="margin:auto;">
+                            <div class="carousel-caption">
+                                <h4>Slide {{$index}}</h4>
+                                <p>{{slide.text}}</p>
+                            </div>
+                        </uib-slide>
+                    </uib-carousel>
+          
+                <div>
+                    <h4> Description</h4>
+                    <div class="col-md-6 col-lg-6 col-sm-6 baseprice">
+                        <h5> Posted by : <a ui-sref="UserSellerProfile">{{productCtrl.sellerid}}</a></h5>
+                        <h5> Base price : {{productCtrl.price}}</h5>
+                        <h5> Expiry date : <h4>{{productCtrl.date}}</h4></h5>
+                        <h5> quantity left : {{productCtrl.quantity}}</h5>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-6 bidvalue">
+                        <form novalidate class="form-horizontal" name="UserInputBid">
+                            <div class="form-group col-md-8 col-sm-8 col-lg-8"
+                                 ng-class="{ 'has-error': UserInputBid.InputBid.$touched && UserInputBid.InputBid.$invalid }">
+                                <label for="InputBid" class="col-lg-3 col-sm-3 col-md-3 control-label">Input
+                                    Bid</label>
+                                <div class="col-lg-9 col-sm-9 col-md-9">
+                                    <input type="text" name="InputBid" class="form-control" id="InputBid"
+                                           placeholder="Enter your bid"
+                                           ng-model="user.InputBid"
+                                           ng-pattern="/^[0-9]{1,5}$/" required>
+                                    <span class="input-group-addon " id="singEmailAddon">SEK</span>
+                                    <div class="help-block" ng-messages="UserInputBid.InputBid.$error"
+                                         ng-show="UserInputBid.InputBid.$touched && !UserInputBid.InputBid.$pristine">
+                                        <div ng-messages-include="error.user.messages.html"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-4">
+                                    <button ng-click=" show= !show" type="submit" class="btn btn-primary"
+                                            ng-disabled="UserInputBid.$invalid" bid-directive>Bid
+                                    </button>
+                                </div> 
+                             <button style="margin-top:10px;" ng-show="show" type="submit" class=" col-lg-4 btn btn-primary"
+                                            ng-disabled="UserInputBid.$invalid">Cancel bid
+                                    </button>
+                                    </div>
+                        </form>
+                        <h5><label for="InputBid" class="col-lg-5 col-sm-5 col-md-5 control-label">Current bid value: </label> {{Currentbid}}</h5>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end of category panel-->
+    <!-- start of my bids and my products panel-->
+    <div class="col-md-4 col-lg-4 col-sm-4">
+       <div ui-view="list"></div>
+    </div>
+</div>
+<!-- end of panel-->
+</div>

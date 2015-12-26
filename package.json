@@ -65,7 +65,8 @@
     "uglifyify": "^2.5.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^0.1.1",
-    "watchify": "^3.4.0"
+    "watchify": "^3.4.0",
+    "@flowjs/flow.js": "git+https://github.com/flowjs/flow.js.git"
   },
   "scripts": {
     "pretest": "npm install",
