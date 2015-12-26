@@ -1,0 +1,46 @@
+<!-- Start of the main content for user home page-->
+<div class="container-fluid">
+    <!-- start of the categories panel-->
+    <div class="col-md-8 col-lg-8 col-sm-8">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Seller Profile</h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-6 col-lg-6 col-sm-6">
+                    <div class="row row-eq-height">
+                        <div class="container-fluid" flow-init>
+                            <div>
+                                <div class="thumbnail" ng-hide="$flow.files.length">
+                                    <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image"/>
+                                </div>
+                            
+                            </div>
+                        </div>
+                    </div>
+                    <div ui-view="rating"></div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-sm-6">
+                <ul style="list-style-type:none; padding-left:0px;">
+                <li class="listsellprofile" >
+                   <label for="UserName" class="col-lg-12 col-md-12 col-sm-12 control-label"><span class="col-md-4 cpl-lg-4 col-sm-4">UserName:</span>  <span class ="col-lg-8 col-md-8 col-sm-8">{{UserSellerProfileCtrl.UserName}}</span></label>
+                   </li>
+                   <li class="listsellprofile">
+                      <label for="UserEmail" class="col-lg-12 col-md-12 col-sm-12 control-label"><span class="col-md-4 cpl-lg-4 col-sm-4">email-address :</span> <span class ="col-lg-8 col-md-8 col-sm-8">{{UserSellerProfileCtrl.email}}</span></label>
+                      </li>
+                       <li class="listsellprofile">
+                            <label for="MobileNO" class="col-lg-12 col-md-12 col-sm-12 control-label"><span class="col-md-4 cpl-lg-4 col-sm-4"> mobile number :</span><span class ="col-lg-8 col-md-8 col-sm-8">{{UserSellerProfileCtrl.Mobile}}</span></label>
+                            </li>
+                             <li class="listsellprofile">
+                        <label for="UserAddress" class="col-lg-12 col-md-12 col-sm-12 control-label"><span class="col-md-4 cpl-lg-4 col-sm-4"> Address : </span><span class ="col-lg-8 col-md-8 col-sm-8"> {{UserSellerProfileCtrl.address}}</span></label>   </li>       
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end of category panel-->
+    <!-- start of my bids and my products panel-->
+  <div class="col-md-4 col-lg-4 col-sm-4">
+       <div ui-view="list"></div>
+    </div>
+    <!-- end of panel-->
+</div>
