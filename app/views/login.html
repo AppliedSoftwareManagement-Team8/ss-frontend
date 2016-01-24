@@ -13,41 +13,52 @@
                         </div>
                         <div class="panel-body">
                             <form name="loginForm" class="form-horizontal" novalidate>
-                              <div class="form-group" ng-class="{ 'has-error': loginForm.emailID.$touched && loginForm.emailID.$invalid }">
-                                  <label for="loginEmail" class="col-lg-2 control-label">Email address</label>
-                                  <div class="col-lg-10">
-                                      <div class="input-group">
-                                          <input name="emailID" type="text" id="loginEmail" class="form-control" placeholder="BTH ID" aria-describedby="loginEmailAddon"
-                                                 ng-model="user.emailID"
-                                                 ng-minlength="6"
-                                                 ng-maxlength="35"
-                                                 required>
-                                          <span class="input-group-addon" id="loginEmailAddon">@student.bth.se</span>
-                                      </div>
-                                      <div class="help-block" ng-messages="loginForm.emailID.$error" ng-show="loginForm.emailID.$touched && !loginForm.emailID.$pristine">
-                                          <div ng-messages-include="error.messages.html"></div>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="form-group" ng-class="{ 'has-error': loginForm.password.$touched && loginForm.password.$invalid }">
-                                  <label for="loginPassword" class="col-lg-2 control-label">Password</label>
-                                  <div class="col-lg-10">
-                                      <input type="password" name="password" class="form-control" id="loginPassword" placeholder="Password"
-                                             ng-model="user.password"
-                                             ng-minlength="8"
-                                             ng-maxlength="20"
-                                             required>
-                                      <div class="help-block" ng-messages="loginForm.password.$error" ng-show="loginForm.password.$touched && !loginForm.password.$pristine">
-                                          <div ng-messages-include="error.messages.html"></div>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="form-group">
-                                  <div class="col-lg-offset-2 col-lg-10">
-                                      <button ui-sref="UserMain" type="submit" class="btn btn-primary" ng-disabled="loginForm.$invalid">Login</button>
-                                  </div>
-                              </div>
+                                <div class="form-group"
+                                     ng-class="{ 'has-error': loginForm.emailID.$touched && loginForm.emailID.$invalid }">
+                                    <label for="loginEmail" class="col-lg-2 control-label">Email address</label>
+                                    <div class="col-lg-10">
+                                        <div class="input-group">
+                                            <input name="emailID" type="text" id="loginEmail" class="form-control"
+                                                   placeholder="BTH ID" aria-describedby="loginEmailAddon"
+                                                   ng-model="loginCtrl.emailID"
+                                                   ng-minlength="6"
+                                                   ng-maxlength="35"
+                                                   required>
+                                            <span class="input-group-addon" id="loginEmailAddon">@student.bth.se</span>
+                                        </div>
+                                        <div class="help-block" ng-messages="loginForm.emailID.$error"
+                                             ng-show="loginForm.emailID.$touched && !loginForm.emailID.$pristine">
+                                            <div ng-messages-include="error.messages.html"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group"
+                                     ng-class="{ 'has-error': loginForm.password.$touched && loginForm.password.$invalid }">
+                                    <label for="loginPassword" class="col-lg-2 control-label">Password</label>
+                                    <div class="col-lg-10">
+                                        <input type="password" name="password" class="form-control" id="loginPassword"
+                                               placeholder="Password"
+                                               ng-model="loginCtrl.password"
+                                               ng-minlength="8"
+                                               ng-maxlength="20"
+                                               required>
+                                        <div class="help-block" ng-messages="loginForm.password.$error"
+                                             ng-show="loginForm.password.$touched && !loginForm.password.$pristine">
+                                            <div ng-messages-include="error.messages.html"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-offset-2 col-lg-10">
+                                        <button ng-click="loginCtrl.login()" type="button" class="btn btn-primary"
+                                                ng-disabled="loginForm.$invalid">Login
+                                        </button>
+                                    </div>
+                                </div>
                             </form>
+                            <div class="alert alert-danger" ng-if="loginCtrl.loginError">
+                                <strong>There was an error: </strong> {{loginCtrl.singUpErrorText}}
+                            </div>
                         </div>
                     </div>
                 </div>

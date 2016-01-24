@@ -9,28 +9,53 @@
                             <h3 class="panel-title">Activation</h3>
                         </div>
                         <div class="panel-body">
-                            <form novalidate class="form-group" name="activationForm">
+                            <form class="form-horizontal" name="activationForm" novalidate>
+                                <div class="form-group"
+                                     ng-class="{ 'has-error': activationForm.emailID.$touched && activationForm.emailID.$invalid }">
+                                    <label for="primaryEmail" class="col-lg-2 control-label">Email address</label>
+                                    <div class="col-lg-10">
+                                        <div class="input-group">
+                                            <input name="emailID" type="text" id="primaryEmail" class="form-control"
+                                                   placeholder="BTH ID" aria-describedby="singEmailAddon"
+                                                   ng-model="activateCtrl.emailID"
+                                                   ng-minlength="6"
+                                                   ng-maxlength="35"
+                                                   required>
+                                            <span class="input-group-addon" id="singEmailAddon">@student.bth.se</span>
+                                        </div>
+                                        <div class="help-block" ng-messages="activationForm.emailID.$error"
+                                             ng-show="activationForm.emailID.$touched && !activationForm.emailID.$pristine">
+                                            <div ng-messages-include="error.messages.html"></div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="form-group"
                                      ng-class="{ 'has-error': activationForm.activationCode.$touched && activationForm.activationCode.$invalid }">
-                                    <label for="activationCode">Please enter the activation code sent to your registered
-                                        e-mail</label>
-                                    <input type="text" name="activationCode" class="form-control" id="activationCode"
-                                           placeholder="Activation code"
-                                           ng-model="user.activationCode"
-                                           required>
-                                </div>
-                                <div class="help-block" ng-messages="activationForm.activationCode.$error"
-                                     ng-show="activationForm.activationCode.$touched && !activationForm.activationCode.$pristine">
-                                    <div ng-messages-include="error.messages.html"></div>
+                                    <label for="activationCode" class="col-lg-2 control-label">Activation Code</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" name="activationCode" class="form-control"
+                                               id="activationCode"
+                                               placeholder="Activation code"
+                                               ng-model="activateCtrl.activationCode"
+                                               required>
+                                        <div class="help-block" ng-messages="activationForm.activationCode.$error"
+                                             ng-show="activationForm.activationCode.$touched && !activationForm.activationCode.$pristine">
+                                            <div ng-messages-include="error.messages.html"></div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-lg-offset-4 col-lg-8">
-                                        <button type="submit" ui-sref="Useractivationconfirm" class="btn btn-primary"
+                                        <button type="button" ng-click="activateCtrl.activateUser()"
+                                                class="btn btn-primary"
                                                 ng-disabled="activationForm.$invalid">Submit
                                         </button>
                                     </div>
                                 </div>
                             </form>
+                            <div class="alert alert-danger" ng-if="activateCtrl.activationError">
+                                <strong>There was an error: </strong> {{activateCtrl.activationErrorText}}
+                            </div>
                         </div>
                     </div>
                 </div>

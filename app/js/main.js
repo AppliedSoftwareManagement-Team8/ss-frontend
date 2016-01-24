@@ -7,6 +7,7 @@ require('bootstrap');
 // angular modules
 import 'angular-ui-router';
 import 'angular-messages';
+import 'satellizer';
 import './templates';
 import './filters';
 import './controllers';
@@ -15,11 +16,13 @@ import './directives';
 import 'angular-animate';
 import 'angular-ui-bootstrap';
 import 'ng-flow';
+import 'angular-socket-io';
 
 // create and bootstrap application
 const requires = [
     'ui.router',
     'ngMessages',
+    'satellizer',
     'templates',
     'app.filters',
     'app.controllers',
@@ -27,7 +30,8 @@ const requires = [
     'app.directives',
     'ngAnimate',
     'ui.bootstrap',
-    'flow'
+    'flow',
+    'btford.socket-io'
 ];
 
 // mount on window for testing
@@ -40,4 +44,3 @@ angular.module('app').config(require('./on_config'));
 angular.module('app').run(require('./on_run'));
 
 angular.bootstrap(document, ['app']);
-

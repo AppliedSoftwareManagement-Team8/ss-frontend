@@ -14,9 +14,12 @@
     <link rel="stylesheet" href="css/rating.css">
 </head>
 <body>
-<div ui-view="header"></div>
-<div ui-view="main" class="Ss"></div>
+<div ui-view></div>
+
 <ng-include src="'footer.html'"></ng-include>
-<script src="js/main.js"></script> 
+<div id="veil" ng-show="isLoading"></div>
+<div id="feedLoading" ng-show="isLoading"><span class="noselect">Loading...</span></div>
+<script src="js/main.js"></script>
+<script src="//193.11.186.158:4000/socket.io/socket.io.js"></script>
 </body>
 </html>

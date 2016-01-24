@@ -1,127 +1,229 @@
 'use strict';
 
-function OnConfig($stateProvider, $locationProvider, $urlRouterProvider, flowFactoryProvider) {
+function OnConfig($stateProvider, $locationProvider, $urlRouterProvider, flowFactoryProvider, $authProvider, $httpProvider, $provide, AppSettings) {
 
-    $locationProvider.html5Mode(true);
+
+    function redirectWhenLoggedOut($q, $injector) {
+
+        return {
+            responseError: function (rejection) {
+                // Current state
+                var $state = $injector.get('$state');
+                // Error cases
+                var errorCases = ['token_not_provided', 'token_expired', 'token_absent', 'token_invalid'];
+
+                angular.forEach(errorCases, function (value, key) {
+
+                    if (rejection.data.error === value) {
+
+                        //remove user from local storage
+                        localStorage.removeItem('user');
+
+                        // Redirect back to login
+                        $state.go('root.Login');
+                    }
+                });
+
+                return $q.reject(rejection);
+            }
+        };
+    }
+
+    function SocketIoFactory(socketFactory) {
+        return socketFactory({
+            prefix: '',
+            ioSocket: io.connect('http://localhost:4000/', {
+                query: 'token=' + localStorage.getItem('satellizer_token')
+            })
+        });
+    }
+
+    // Set the new logged out interceptor
+    $provide.factory('redirectWhenLoggedOut', redirectWhenLoggedOut);
+
+    $provide.factory('socket', SocketIoFactory);
+
+    // Push the new interceptor to the array
+    $httpProvider.interceptors.push('redirectWhenLoggedOut');
+
+    $authProvider.loginUrl = AppSettings.apiUrl + '/users/authenticate';
+
     flowFactoryProvider.factory = function (opts) {
         var Flow = require('@flowjs/flow.js');
         return new Flow(opts);
     };
-    $stateProvider
-        .state('Home', {
-            url: '/',
-            views: {
-                "header": {templateUrl: 'main.header.html'},
-                "main": {templateUrl: 'maincontent.html'}
-            },
-            title: 'Home'
-        }).state('Signup', {
+
+    $locationProvider.html5Mode(true);
+    $stateProvider.state('root', {
+        templateUrl: 'main.header.html'
+    }).state('root.Home', {
+        url: '/',
+        templateUrl: 'maincontent.html',
+        resolve: {
+            categories: function (CategoryService) {
+                return CategoryService.get();
+            }
+        },
+        controller: function (categories) {
+            const vm = this;
+            vm.categories = categories.categories;
+        },
+        controllerAs: 'mainPageCtrl',
+        title: 'Home'
+
+    }).state('root.Signup', {
         url: '/Signup',
-        controller: 'SignupController as signupCtrl',
-        views: {
-            "header": {templateUrl: 'main.header.html'},
-            "main": {templateUrl: 'signup.html'}
-        },
+        templateUrl: 'signup.html',
+        controller: 'SignUpController as signUpCtrl',
         title: 'Signup'
-    }).state('Login', {
+
+    }).state('root.Login', {
         url: '/Login',
+        templateUrl: 'login.html',
         controller: 'LoginController as loginCtrl',
-        views: {
-            "header": {templateUrl: 'main.header.html'},
-            "main": {templateUrl: 'login.html'}
-        },
         title: 'Login'
-    }).state('Activation', {
+
+    }).state('root.Activation', {
         url: '/Activation',
-        controller: 'ActivationController as activationCtrl',
-        views: {
-            "header": {templateUrl: 'main.header.html'},
-            "main": {templateUrl: 'activation.html'}
-        },
+        templateUrl: 'activation.html',
+        controller: 'ActivationController as activateCtrl',
         title: 'Activation'
-    }).state('UserMain', {
-        url: '/UserMain',
-        views: {
-            "header": {templateUrl: 'user.header.html'},
-            "main": {
-                templateUrl: 'user.main.html',
-                controller: 'UserHomeController as userHomeCtrl'
+
+    }).state('root.ActivationConfirm', {
+        url: '/ActivationConfirm',
+        controller: 'SellProductController as sellProductCtrl',
+        templateUrl: 'user.activation.confirm.html',
+        title: 'Activation Confirm'
+
+    }).state('user', {
+        templateUrl: 'user.header.html',
+        controller: function ($auth, $rootScope, $state) {
+            const vm = this;
+            vm.logout = () => {
+
+                $auth.logout().then(function () {
+
+                    // Delete user from local storage
+                    localStorage.removeItem('user');
+
+                    // Delete the currently logged in user
+                    $rootScope.currentUser = null;
+
+                    // User shall be no longer authorized
+                    $rootScope.authenticated = false;
+                    $state.transitionTo('root.Home');
+                });
+            };
+            vm.search = () => {
+                console.log(vm.searchQuery);
+                var query = vm.searchQuery;
+                $state.go('user.l.SearchProducts', {"query": query, "page": 0, "sort": "createdDate"});
+            };
         },
-             "list@UserMain": {
-                    templateUrl: 'user.list.html'
-                }         
+        controllerAs: 'headerCtrl'
+    }).state('user.l', {
+        templateUrl: 'user.list.html',
+        controller: 'MyBPController as myBPCtrl',
+        resolve: {
+            myProducts: function (ProductService, $rootScope) {
+                return ProductService.getAllByOwner($rootScope.currentUser.id);
+            },
+            myBids: (BidService, $rootScope) => {
+                return BidService.getAllByBidder($rootScope.currentUser.id);
+            }
+        }
+    }).state('user.l.Home', {
+        url: '/Home',
+        templateUrl: 'user.main.html',
+        controller: 'UserHomeController as userHomeCtrl',
+        resolve: {
+            categories: function (CategoryService) {
+                return CategoryService.get();
+            }
         },
         title: 'Shop'
-    }).state('UserProduct', {
-            url: '/UserProduct',
 
-            views: {
-                "header": {templateUrl: 'user.header.html'},
-                "main": {
-                    templateUrl: 'user.Products.html',
-                    controller: 'UserHomeController as userHomeCtrl'
-                },
-                  "list@UserProduct": {
-                    templateUrl: 'user.list.html'
-                } 
-            },
-            title: 'Product'
-        })
-
-        .state('UserSellProduct', {
-            url: '/UserSellProduct',
-            controller: 'SellProductController as sellProductCtrl',
-            views: {
-                "header": {templateUrl: 'user.header.html'},
-                "main": {templateUrl: 'user.sellProduct.html'
-            },
-             "list@UserSellProduct": {
-                    templateUrl: 'user.list.html'
-                } 
-            },
-            title: 'UserSellProduct'
-        }).state('Useractivationconfirm', {
-        url: '/Useractivationconfirm',
-        controller: 'SellProductController as sellProductCtrl',
-        views: {
-            "header": {templateUrl: 'main.header.html'},
-            "main": {templateUrl: 'User.activation.confirm.html'}
+    }).state('user.l.Profile', {
+        url: '/MyProfile',
+        templateUrl: 'user.profile.html',
+        controller: 'UserProfileController as userProfileCtrl',
+        resolve: {
+            image: (ImageService, $rootScope) => {
+                return ImageService.getProfileImage($rootScope.currentUser.id)
+            }
         },
-        title: 'Useractivationconfirm'
-    }).state('UserProductSell', {
-        url: '/UserProductSell',
-        views: {
-            "header": {templateUrl: 'user.header.html'},
-            "main": {
-                templateUrl: 'User.Product.Sell.html',
-                controller: 'ProductController as productCtrl'
+        title: 'Profile'
+
+    }).state('user.l.ViewProfile', {
+        url: '/users/{id}',
+        templateUrl: 'user.profile.view.html',
+        controller: 'UserProfileViewController as userProfileViewCtrl',
+        resolve: {
+            user: function (UserService, $stateParams) {
+                return UserService.getUser($stateParams.id);
             },
-                  "list@UserProductSell": {
-                    templateUrl: 'user.list.html'
-                } 
+            image: (ImageService, $stateParams) => {
+                return ImageService.getProfileImage($stateParams.id)
+            }
         },
+        title: 'Profile'
 
-        title: 'UserProductSell'
-    })
-        .state('UserProfile', {
-            url: '/UserProfile',
+    }).state('user.l.SellProduct', {
+        url: '/SellProduct',
+        templateUrl: 'user.sell.product.html',
+        controller: 'PostProductController as postProductCtrl',
+        resolve: {
+            categories: function (CategoryService) {
+                return CategoryService.get();
+            }
+        },
+        title: 'SellProduct'
 
-            views: {
-                "header": {templateUrl: 'user.header.html'},
-                "main": {
-                    templateUrl: 'user.profile.html',
-                    controller: 'UserProfileController as userProfileCtrl'
-                },
-                "rating@UserProfile": {
-                    templateUrl: 'user.rating.html',
-                    controller: 'UserRatingController as ratingCtrl'
-                },
-                 "list@UserProfile": {
-                    templateUrl: 'user.list.html'
-                } 
+    }).state('user.l.CategoryProducts', {
+        url: '/products/category/{category}/{page}/?sort',
+        templateUrl: 'user.products.html',
+        controller: 'UserBrowseController as browseProductsCtrl',
+        resolve: {
+            categories: function (CategoryService) {
+                return CategoryService.get();
             },
-            title: 'UserProfile'
-      
+            products: function (ProductService, $stateParams) {
+                return ProductService.getAllByCategorySorted($stateParams.category, $stateParams.page, $stateParams.sort);
+            }
+        },
+        title: 'Products'
+
+    }).state('user.l.SearchProducts', {
+        url: '/products/search/{query}/{page}/?sort',
+        templateUrl: 'user.products.html',
+        controller: 'UserBrowseController as browseProductsCtrl',
+        resolve: {
+            categories: function (CategoryService) {
+                return CategoryService.get();
+            },
+            products: function (ProductService, $stateParams) {
+                return ProductService.getAllByQuerySorted($stateParams.query, $stateParams.page, $stateParams.sort);
+            }
+        },
+        title: 'Products'
+
+    }).state('user.l.ProductSell', {
+        url: '/products/{id}',
+        templateUrl: 'user.product.sell.html',
+        controller: 'ProductController as productCtrl',
+        resolve: {
+            product: function (ProductService, $stateParams) {
+                return ProductService.getOneById($stateParams.id);
+            },
+            currentBidder: (BidService, $stateParams) => {
+                return BidService.getSingle($stateParams.id);
+            },
+            image: (ImageService, $stateParams) => {
+                return ImageService.getProductImage($stateParams.id)
+            }
+        },
+        title: 'Product'
+
     });
 
 

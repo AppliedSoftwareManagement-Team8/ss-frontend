@@ -1,120 +1,134 @@
-
 <!-- Start of the main content for user home page-->
-<div class="container-fluid">
-    <!-- start of the categories panel-->
-    <div class="col-md-8 col-lg-8 col-sm-8">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title">Products</h3>
-            </div>
-            <div class="panel-body" style="height:auto;">
-              
+<!-- start of the categories panel-->
+<div class="col-md-8 col-lg-8 col-sm-8">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Products</h3>
+        </div>
+        <div class="panel-body" style="height:auto;">
+
+            <div class="row">
                 <div class="col-md-10 col-lg-10 col-sm-10">
-                <!-- start of pagination-->
-                <nav>
-  <ul class="pagination">
-    <li class=""><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-    <li class=""><a href="#">2 <span class="sr-only">(current)</span></a></li>
-    <li class=""><a href="#">3 <span class="sr-only">(current)</span></a></li>
-  </ul>
-</nav>
-</div>
-<div class="col-md-2 col-lg-2 col-sm-2 dropdown">
-  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-   OrderBy
-    <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-    <li><a href="#" ng-click="orderByAttribute = 'position'">Soon to expire</a></li>
-    <li><a href="#">Old to new</a></li>
-    <li><a href="#">Lowest base price</a></li>
-  </ul>
-</div>
-<!-- end of pagination-->
-<!-- start of the prodcut page-->
-                   <!-- Start of the main content for user home page-->
-    <!-- start of the categories panel-->
-  <div class="col-md-12 col-lg-12 col-sm-12 ">
-                    <div class="row" style="height:auto;">
-                       
-                              <div class="col-lg-4 products">
-                      <a class="thumbnail" ui-sref="UserProductSell">
-                        <img src="images/chair.jpg"> 
-                        </a>
-                              <div class="wrapper caption post-content">
-                                        <h4>Wooden Chair</h4>
-                                        <p>Price: 100 krones</p>
-                                    </div>
-                            </div>
-                           <div class="col-lg-4 products">
-                      <a class="thumbnail">
-                        <img src="images/mattress.jpg"> 
-                        </a>
-                              <div class="wrapper caption post-content">
-                                        <h4>Bed Mattress</h4>
-                                        <p>Price: 1000 krones</p>
-                                    </div>
-                            </div>
-                           <div class="col-lg-4 products">
-                      <a class="thumbnail">
-                        <img src="images/Sofa.jpg"> 
-                        </a>
-                              <div class="wrapper caption post-content">
-                                        <h4>Wooden Chair</h4>
-                                        <p>Price: 100 krones</p>
-                                    </div>
-                            </div>
-                        </div>
-
-                         <div class="row" style="height:auto;">
-                       
-                              <div class="col-lg-4 products">
-                      <a class="thumbnail">
-                        <img src="images/lamp.jpg"> 
-                        </a>
-                              <div class="wrapper caption post-content">
-                                        <h4>Wooden Chair</h4>
-                                        <p>Price: 100 krones</p>
-                                    </div>
-                            </div>
-                           <div class="col-lg-4 products">
-                      <a class="thumbnail">
-                        <img src="images/table.jpg"> 
-                        </a>
-                              <div class="wrapper caption post-content">
-                                        <h4>Bed Mattress</h4>
-                                        <p>Price: 1000 krones</p>
-                                    </div>
-                            </div> 
-                           <div class="col-lg-4 products">
-                      <a class="thumbnail">
-                        <img src="images/computerchair.jpg"> 
-                        </a>
-                              <div class="wrapper caption post-content">
-                                        <h4>Wooden Chair</h4>
-                                        <p>Price: 100 krones</p>
-                                    </div>
-                            </div>
-                        </div>
-                        </div>
-                        
-              
-
-                    <!-- end of product page-->
-      
+                    <!-- start of pagination-->
+                    <nav>
+                        <ul class="pagination">
+                            <li ng-repeat="i in browseProductsCtrl.pages track by $index">
+                                <a ng-click="browseProductsCtrl.toPage($index)">{{$index + 1}}<span class="sr-only">(current)</span></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-md-2 col-lg-2 col-sm-2 dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1"
+                            data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="true">
+                        OrderBy
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a ng-click="browseProductsCtrl.getBy('expirationDate')">Soon to expire</a></li>
+                        <li><a ng-click="browseProductsCtrl.getBy('createdDate')">Old to new</a></li>
+                        <li><a ng-click="browseProductsCtrl.getBy('basePrice')">Lowest base price</a></li>
+                    </ul>
+                </div>
             </div>
+            <!-- end of pagination-->
+            <!-- start of the product page-->
+            <div ng-repeat="product in browseProductsCtrl.products track by $index" ng-if="$index % 3 == 0"
+                 class="row row-eq-height">
+                <div class="col-lg-4" ng-show="browseProductsCtrl.products[$index]">
+                    <div class="well">
+                        <a ng-click="browseProductsCtrl.view(browseProductsCtrl.products[$index]._id)"
+                           class="thumbnail">
+                            <img class="img-responsive" ng-src="{{browseProductsCtrl.products[$index].image}}">
+                        </a>
+                        <table class="table table-condensed table-striped">
+                            <tbody>
+                            <tr>
+                                <td colspan="2">
+                                    <a ng-click="browseProductsCtrl.view(browseProductsCtrl.products[$index]._id)">{{browseProductsCtrl.products[$index].name}}</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold;">Current bid:</td>
+                                <td>{{browseProductsCtrl.products[$index].currentBid}}</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold;">Base price:</td>
+                                <td>{{browseProductsCtrl.products[$index].basePrice}} SEK</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold;">Expires in:</td>
+                                <td>{{browseProductsCtrl.getExp(browseProductsCtrl.products[$index].expirationDate)}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-lg-4" ng-show="browseProductsCtrl.products[$index + 1]">
+                    <div class="well">
+                        <a ng-click="browseProductsCtrl.view(browseProductsCtrl.products[$index + 1]._id)"
+                           class="thumbnail">
+                            <img class="img-responsive" ng-src="{{browseProductsCtrl.products[$index + 1].image}}">
+                        </a>
+                        <table class="table table-condensed table-striped">
+                            <tbody>
+                            <tr>
+                                <td colspan="2">
+                                    <a ng-click="browseProductsCtrl.view(browseProductsCtrl.products[$index + 1]._id)">{{browseProductsCtrl.products[$index + 1].name}}</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold;">Current bid:</td>
+                                <td>{{browseProductsCtrl.products[$index + 1].currentBid}}</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold;">Base price:</td>
+                                <td>{{browseProductsCtrl.products[$index + 1].basePrice}} SEK</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold;">Expires in:</td>
+                                <td>{{browseProductsCtrl.getExp(browseProductsCtrl.products[$index + 1].expirationDate)}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-lg-4" ng-show="browseProductsCtrl.products[$index + 2]">
+                    <div class="well">
+                        <a ng-click="browseProductsCtrl.view(browseProductsCtrl.products[$index + 2]._id)"
+                           class="thumbnail">
+                            <img class="img-responsive" ng-src="{{browseProductsCtrl.products[$index + 2].image}}">
+                        </a>
+                        <table class="table table-condensed table-striped">
+                            <tbody>
+                            <tr>
+                                <td colspan="2">
+                                    <a ng-click="browseProductsCtrl.view(browseProductsCtrl.products[$index + 2]._id)">{{browseProductsCtrl.products[$index + 2].name}}</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold;">Current bid:</td>
+                                <td>{{browseProductsCtrl.products[$index + 2].currentBid}}</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold;">Base price:</td>
+                                <td>{{browseProductsCtrl.products[$index + 2].basePrice}} SEK</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold;">Expires in:</td>
+                                <td>{{browseProductsCtrl.getExp(browseProductsCtrl.products[$index + 2].expirationDate)}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <!-- end of product page-->
         </div>
     </div>
-
-  <!-- end of category panel-->
-    <!-- start of my bids and my products panel-->
-   <div class="col-md-4 col-lg-4 col-sm-4">
-                <div ui-view="list"></div>
-    </div>
-    <!-- end of panel-->
-
-    </div>
+</div>
 
 
 

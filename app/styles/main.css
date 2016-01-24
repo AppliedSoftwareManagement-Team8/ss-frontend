@@ -41,73 +41,117 @@ body {
     margin-top: 0px;
 }
 
-.Ss-footer-content-copyright
-{
+.Ss-footer-content-copyright {
     text-align: center;
-       width:100%;
-    position:relative;
+    width: 100%;
+    position: relative;
     bottom: 0px;
 
-  }
-  .Ss-footer{
-    
-  }
-.jumbotron{
-background-image: url(/images/Background_Jumbotron.jpg);
-background-repeat: no-repeat;
-background-size: cover;
 }
 
-.thumbnail .caption{
-    position:absolute;
-     z-index: 1;  
-     left: 0;
+.Ss-footer {
+
 }
-.lead{
-    color:#ffffff;
+
+.jumbotron {
+    background-image: url(/images/Background_Jumbotron.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
-.navHome{
+
+.thumbnail .caption {
+    position: absolute;
+    z-index: 1;
+    left: 0;
+}
+
+.lead {
+    color: #ffffff;
+}
+
+.navHome {
     margin-top: 10px;
     padding-left: 0px;
 }
-#slides_control > div{
-  height: 200px;
+
+#slides_control > div {
+    height: 200px;
 }
-img{
-  margin:auto;
-  width: 400px;
+
+img {
+    margin: auto;
+    width: 400px;
 }
+
 #slides_control {
-  position:absolute;
-  width: 400px;
-  left:50%;
-  top:20px;
- margin-left:-200px;
+    position: absolute;
+    width: 400px;
+    left: 50%;
+    top: 20px;
+    margin-left: -200px;
 }
-.baseprice{
+
+.baseprice {
     margin: 0px;
     padding-right: 0px;
     padding-left: 0px;
 }
-.bidvalue{
+
+.bidvalue {
     margin-top: 0px;
 }
-.textdecoration{
-  text-decoration: none;
-  color: #000000;
-  border: 1px solid #b0b0b0;
+
+.textdecoration {
+    text-decoration: none;
+    color: #000000;
+    border: 1px solid #b0b0b0;
 }
-a{
-  color:#000000;
+
+a {
+    color: #000000;
 }
-  .thumbnail {
-      max-width: 300px; max-height: 250px; line-height: 20px; margin-bottom: 10px;
-    }
-    .products{
-      max-height: 260px;
-      min-height: 260px;
-    }
-    .listsellprofile
-    {
-      padding-bottom: 30px;
-    }
+
+.thumbnail {
+    max-width: 300px;
+    max-height: 250px;
+    line-height: 20px;
+    margin-bottom: 10px;
+}
+
+.products {
+    max-height: 260px;
+    min-height: 260px;
+}
+
+.listsellprofile {
+    padding-bottom: 30px;
+}
+
+#veil {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    cursor: not-allowed;
+    filter: alpha(opacity=60);
+    opacity: 0.6;
+    background: #465e7a;
+}
+
+#feedLoading {
+    position: absolute;
+    top: 200px;
+    width: 100%;
+    text-align: center;
+    font-size: 4em;
+    color: white;
+    text-shadow: 2px 2px 2px #021124;
+}
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

@@ -1,65 +1,39 @@
-<!-- Start of the main content for user home page-->
-<div class="container-fluid">
-    <!-- start of the categories panel-->
-    <div class="col-md-8 col-lg-8 col-sm-8">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title">Product Categories</h3>
-            </div>
-            <div class="panel-body">
-                <div class="container">
-                    <div class="row row-eq-height">
-                        <div class="col-md-8 col-lg-8 col-sm-8">
-                            <div class="col-lg-4">
-                                <h4>homedecor and furniture</h4>
-                                <a ui-sref="UserProduct" class="thumbnail">
-                                    <img src="images/Homedecor.jpg">
-                                </a>
-                            </div>
-                            <div class="col-lg-4">
-                                <h4>Electrical appliances</h4>
-                                <a href="" class="thumbnail">
-                                    <img src="images/electricalappliances.jpg">
-                                </a>
-                            </div>
-                            <div class="col-lg-4">
-                                <h4>Books & stationary</h4>
-                                <a href="#" class="thumbnail">
-                                    <img src="images/Books.jpg">
-                                </a>
-                            </div>
+<!-- start of the categories panel-->
+<div class="col-md-8 col-lg-8 col-sm-8">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Product Categories</h3>
+        </div>
+
+        <div class="panel-body">
+            <div class="container">
+                <div ng-repeat="category in userHomeCtrl.categories track by $index" ng-if="$index % 3 == 0"
+                     class="row row-eq-height">
+                    <div class="col-md-8 col-lg-8 col-sm-8">
+                        <div class="col-lg-4">
+                            <h4>{{userHomeCtrl.categories[$index].name}}</h4>
+                            <a class="thumbnail">
+                                <img class="img-responsive" ng-click="userHomeCtrl.categoryClick(userHomeCtrl.categories[$index]._id.$id)"
+                                     ng-src="images/{{userHomeCtrl.categories[$index]._id.$id}}.jpg">
+                            </a>
                         </div>
-                        <div class="row row-eq-height">
-                            <div class="col-md-8 col-lg-8 col-sm-8">
-                                <div class="col-lg-4">
-                                    <h4>Cycles or automobiles</h4>
-                                    <a href="#" class="thumbnail">
-                                        <img src="images/cyclesautomobiles.jpg">
-                                    </a>
-                                </div>
-                                <div class="col-lg-4">
-                                    <h4>Clothes and footwear</h4>
-                                    <a href="#" class="thumbnail">
-                                        <img src="images/clothes.jpg">
-                                    </a>
-                                </div>
-                                <div class="col-lg-4">
-                                    <h4>Antiques and collectibles</h4>
-                                    <a href="#" class="thumbnail">
-                                        <img src="images/Antiques.jpg">
-                                    </a>
-                                </div>
-                            </div>
+                        <div class="col-lg-4">
+                            <h4>{{userHomeCtrl.categories[$index + 1].name}}</h4>
+                            <a class="thumbnail">
+                                <img class="img-responsive" ng-click="userHomeCtrl.categoryClick(userHomeCtrl.categories[$index + 1]._id.$id)"
+                                     ng-src="images/{{userHomeCtrl.categories[$index + 1]._id.$id}}.jpg">
+                            </a>
+                        </div>
+                        <div class="col-lg-4">
+                            <h4>{{userHomeCtrl.categories[$index + 2].name}}</h4>
+                            <a class="thumbnail">
+                                <img class="img-responsive" ng-click="userHomeCtrl.categoryClick(userHomeCtrl.categories[$index + 2]._id.$id)"
+                                     ng-src="images/{{userHomeCtrl.categories[$index + 2]._id.$id}}.jpg">
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- end of category panel-->
-    <!-- start of my bids and my products panel-->
-   <div class="col-md-4 col-lg-4 col-sm-4">
-       <div ui-view="list"></div>
-    </div>
-    <!-- end of panel-->
 </div>

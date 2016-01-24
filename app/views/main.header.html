@@ -5,16 +5,17 @@
             </div>
             <div class="nav navbar-nav navbar-left">
             <ul class="navHome">
-                <a ui-sref="Home" class="btn btn-success" aria-label="Left Align">
+                <a ui-sref="root.Home" class="btn btn-success" aria-label="Left Align">
                     <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
                 </a>
-                <a ui-sref="Home" href="#" style="text-effect: none;text-decoration:none;color:#000000;">Welcome to Student Shopper</a>
+                <a ui-sref="root.Home" href="#" style="text-effect: none;text-decoration:none;color:#000000;">Welcome to Student Shopper</a>
                 </ul>
             </div>
             <ul class="nav navbar-nav navbar-right">
-                <a class="btn btn-success navbar-btn" ui-sref="Login"> <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Login</a>
-                <a class="btn btn-success navbar-btn" ui-sref="Signup">Sign Up</a>
+                <a class="btn btn-success navbar-btn" ui-sref="root.Login"> <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Login</a>
+                <a class="btn btn-success navbar-btn" ui-sref="root.Signup">Sign Up</a>
             </ul>
         </div>
     </nav>
 </div>
+<div ui-view class="Ss"></div>

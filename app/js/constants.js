@@ -2,7 +2,7 @@
 
 const AppSettings = {
   appTitle: 'Student Shopper',
-  apiUrl: '/api/v1'
+  apiUrl: 'http://localhost:4000/api'
 };
 
 export default AppSettings;

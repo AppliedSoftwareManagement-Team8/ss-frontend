@@ -1,0 +1,36 @@
+<!-- start of the categories panel-->
+<div class="col-md-8 col-lg-8 col-sm-8">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">User Profile</h3>
+        </div>
+        <div class="panel-body">
+            <div class="col-md-6 col-lg-6 col-sm-6">
+                <div class="row row-eq-height">
+                    <div class="thumbnail">
+                        <img ng-src="{{userProfileViewCtrl.image}}"/>
+                    </div>
+                </div>
+                <div class="row row-eq-height">
+                    <ng-include src="'user.rate.html'"></ng-include>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6">
+                <table class="table table-condensed table-striped">
+                    <tbody>
+                        <tr><td style="font-weight: bold;">First Name:</td><td>{{userProfileViewCtrl.user.firstName}}</td></tr>
+                        <tr><td style="font-weight: bold;">Last Name:</td><td>{{userProfileViewCtrl.user.lastName}}</td></tr>
+                        <tr><td style="font-weight: bold;">Primary Email:</td><td>{{userProfileViewCtrl.user.primaryEmail}}</td></tr>
+                        <tr><td style="font-weight: bold;">Secondary Email:</td><td>{{userProfileViewCtrl.user.secondaryEmail}}</td></tr>
+                        <tr><td style="font-weight: bold;">Telephone Number:</td><td>{{userProfileViewCtrl.user.telephone}}</td></tr>
+                        <tr><td style="font-weight: bold;">Mobile Number:</td><td>{{userProfileViewCtrl.user.mobile}}</td></tr>
+                        <tr><td style="font-weight: bold;">City:</td><td>{{userProfileViewCtrl.user.city}}</td></tr>
+                        <tr><td style="font-weight: bold;">Address:</td><td>{{userProfileViewCtrl.user.address}}</td></tr>
+                        <tr><td style="font-weight: bold;">Zip Code:</td><td>{{userProfileViewCtrl.user.zipCode}}</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end of category panel-->

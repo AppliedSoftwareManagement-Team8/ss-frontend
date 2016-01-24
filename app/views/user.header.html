@@ -1,25 +1,44 @@
-<div class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar">
-      <form class="navbar-form navbar-left" role="search">
-       <a ui-sref="UserMain" class="btn btn-default" aria-label="Left Align">
+<div class="navbar navbar-inverse navbar-static-top">
+    <div class="container-fluid">
+        <div class="navbar">
+            <div class="nav navbar-nav navbar-left">
+                <a ui-sref="user.l.Home" class="btn btn-default" aria-label="Left Align">
                     <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-                </a><span style="color:white"> Welcome Kathyayani!</span>
-        <div class="form-group" style="margin-left:250px;">
-          <div class="input-group">
-              <input type="text" class="form-control" ng-model="SearchQuery" placeholder="Search for product">
-              <span class="input-group-btn">
-                <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-              </span>
-          </div>
+                </a>
+                <span style="color:white"> Welcome, {{currentUser.firstName}}</span>
+            </div>
+            <form class="navbar-form navbar-left" role="search" name="searchForm" novalidate>
+                <div class="form-group" style="margin-left:250px;">
+                    <div class="input-group">
+                        <input name="searchQuery" type="text" class="form-control"
+                               ng-model="headerCtrl.searchQuery"
+                               placeholder="Search for product">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" ng-click="headerCtrl.search()">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </form>
+            <div class="nav navbar-nav navbar-right">
+                <a class="btn btn-default navbar-btn" ui-sref="user.l.Profile">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>Profile</a>
+                <a class="btn btn-default navbar-btn" ui-sref="user.l.SellProduct">
+                    <span class="glyphicon glyphicon-share" aria-hidden="true"></span>Sell Product</a>
+                <a ng-click="headerCtrl.logout()" class="btn btn-default navbar-btn">
+                    <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>Logout</a>
+            </div>
         </div>
-      </form>
-        <ul class="nav navbar-nav navbar-right">
-                <a class="btn btn-default navbar-btn" ui-sref="UserProfile" > <span class="glyphicon glyphicon-user" aria-hidden="true"></span>Profile</a>
-                <a class="btn btn-default navbar-btn" ui-sref="UserSellProduct" > <span class="glyphicon glyphicon-share" aria-hidden="true"></span>Sell Product</a>
-                <a ui-sref="Home" class="btn btn-default navbar-btn" > <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>Logout</a>
-            </ul>
     </div>
-  </div>
-  <!-- end of search bar-->
+    <!-- end of search bar-->
 </div>
+
+<!-- Start of the main content for user home page-->
+<div class="container-fluid">
+
+    <!-- start of my bids and my products panel-->
+    <div ui-view></div>
+    <!-- end of panel-->
+</div>
+<!-- end of main content-->

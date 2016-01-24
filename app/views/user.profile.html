@@ -1,117 +1,197 @@
-<!-- Start of the main content for user home page-->
-<div class="container-fluid">
-    <!-- start of the categories panel-->
-    <div class="col-md-8 col-lg-8 col-sm-8">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title">User Profile</h3>
-            </div>
-            <div class="panel-body">
-                <div class="col-md-6 col-lg-6 col-sm-6">
-                    <div class="row row-eq-height">
-                        <div class="container-fluid" flow-init>
+<!-- start of the categories panel-->
+<div class="col-md-8 col-lg-8 col-sm-8">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">User Profile</h3>
+        </div>
+        <div class="panel-body">
+            <div class="col-md-6 col-lg-6 col-sm-6">
+                <div class="row row-eq-height">
+                    <div class="container-fluid" flow-init>
+                        <div>
+                            <div class="thumbnail" >
+                                <img data-ng-src="{{userProfileCtrl.image}}"/>
+                            </div>
+                            <hr class="soften"/>
                             <div>
-                                <div class="thumbnail" ng-hide="$flow.files.length">
-                                    <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image"/>
-                                </div>
-                                <div class="thumbnail" ng-show="$flow.files.length">
-                                    <img flow-img="$flow.files[0]"/>
-                                </div>
-                                <hr class="soften"/>
-                                <div>
-                                    <input class="btn btn-primary" type="file" ng-hide="$flow.files.length" flow-btn/>
-                                    <p>
-                                        Only PNG,GIF,JPG files allowed.
-                                    </p>
-                                </div>
-                                <hr class="soften"/>
-                                <div>
-                                    <span class="btn btn-danger" ng-show="$flow.files.length" ng-click="$flow.cancel()">Remove</span>
-                                </div>
+                               <input  class="btn btn-primary" type="file" file-model="userProfileCtrl.imageUp" required/>
+
+                                <p>
+                                    Only PNG,GIF,JPG files allowed.
+                                </p>
+                            </div>
+                            <hr class="soften"/>
+                            <div>
+                                <span class="btn btn-primary" ng-show="userProfileCtrl.imageUp" ng-click="userProfileCtrl.uploadImage()">Upload</span>
+                            </div>
+                            <a href="#" class="btn btn-danger" ng-show="userProfileCtrl.imageUp"
+                               ng-click="userProfileCtrl.cancel()">
+                                Remove
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <ng-include src="'user.rating.html'"></ng-include>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6">
+                <form novalidate class="form-horizontal" name="UserProfileForm">
+                    <div class="form-group"
+                         ng-class="{ 'has-error': UserProfileForm.firstName.$touched && UserProfileForm.firstName.$invalid }">
+                        <label for="firstName" class="col-lg-2 control-label">First Name</label>
+                        <div class="col-lg-10">
+                            <input name="firstName" type="text" id="firstName" class="form-control"
+                                   ng-model="userProfileCtrl.user.firstName"
+                                   ng-minlength="2"
+                                   ng-maxlength="35"
+                                   required ng-disabled="!userProfileCtrl.updateProfile">
+                            <div class="help-block" ng-messages="UserProfileForm.firstName.$error"
+                                 ng-show="UserProfileForm.firstName.$touched && !UserProfileForm.firstName.$pristine">
+                                <div ng-messages-include="error.messages.html"></div>
                             </div>
                         </div>
                     </div>
-                    <div ui-view="rating"></div>
-                </div>
-                <div class="col-md-6 col-lg-6 col-sm-6">
-                    <form novalidate class="form-horizontal" name="UserProfileForm">
-                        <div class="form-group"
-                             ng-class="{ 'has-error': UserProfileForm.UserName.$touched && UserProfileForm.UserName.$invalid }">
-                            <label for="UserName" class="col-lg-2 control-label">User Name</label>
-                            <div class="col-lg-10">
-                                <input name="UserName" type="text" id="UserName" class="form-control"
-                                       placeholder="Full Name" aria-describedby="singEmailAddon"
-                                       ng-model="user.Name"
-                                       ng-minlength="2"
-                                       ng-maxlength="35"
-                                       required>
-                                <div class="help-block" ng-messages="UserProfileForm.UserName.$error"
-                                     ng-show="UserProfileForm.UserName.$touched && !UserProfileForm.UserName.$pristine">
-                                    <div ng-messages-include="error.messages.html"></div>
-                                </div>
+                    <div class="form-group"
+                         ng-class="{ 'has-error': UserProfileForm.lastName.$touched && UserProfileForm.lastName.$invalid }">
+                        <label for="lastName" class="col-lg-2 control-label">Last Name</label>
+                        <div class="col-lg-10">
+                            <input name="lastName" type="text" id="lastName" class="form-control"
+                                   ng-model="userProfileCtrl.user.lastName"
+                                   ng-minlength="2"
+                                   ng-maxlength="35"
+                                   required ng-disabled="!userProfileCtrl.updateProfile">
+                            <div class="help-block" ng-messages="UserProfileForm.lastName.$error"
+                                 ng-show="UserProfileForm.lastName.$touched && !UserProfileForm.lastName.$pristine">
+                                <div ng-messages-include="error.messages.html"></div>
                             </div>
                         </div>
-                        <div class="form-group"
-                             ng-class="{ 'has-error': UserProfileForm.UserEmail.$touched && UserProfileForm.UserEmail.$invalid }">
-                            <label for="UserEmail" class="col-lg-2 control-label">email-address</label>
-                            <div class="col-lg-10">
-                                <input type="email" name="UserEmail" class="form-control" id="UserEmail"
-                                       placeholder="email-address"
-                                       ng-model="user.UserEmail"
-                                       ng-minlength="6"
-                                       ng-maxlength="20"
-                                       ng-email
-                                       required>
-                                <div class="help-block" ng-messages="UserProfileForm.UserEmail.$error"
-                                     ng-show="UserProfileForm.UserEmail.$touched && UserProfileForm.UserEmail.$pristine">
-                                    <div ng-messages-include="error.messages.html"></div>
-                                </div>
+                    </div>
+                    <div class="form-group"
+                         ng-class="{ 'has-error': UserProfileForm.UserEmail.$touched && UserProfileForm.UserEmail.$invalid }">
+                        <label for="UserEmail" class="col-lg-2 control-label">Primary Email</label>
+                        <div class="col-lg-10">
+                            <input type="email"
+                                   ng-model="userProfileCtrl.user.primaryEmail"
+                                   name="primaryEmail"
+                                   class="form-control" id="UserEmail" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group"
+                         ng-class="{ 'has-error': UserProfileForm.secondaryEmail.$touched && UserProfileForm.secondaryEmail.$invalid }">
+                        <label for="secondaryEmail" class="col-lg-2 control-label">Secondary Email
+                            (Optional)</label>
+                        <div class="col-lg-10">
+                            <input type="email" name="secondaryEmail" class="form-control" id="secondaryEmail"
+                                   placeholder="Secondary Email"
+                                   ng-model="userProfileCtrl.user.secondaryEmail"
+                                   ng-minlength="6"
+                                   ng-maxlength="35"
+                                   ng-email
+                                   ng-disabled="!userProfileCtrl.updateProfile">
+                            <div class="help-block" ng-messages="UserProfileForm.secondaryEmail.$error"
+                                 ng-show="UserProfileForm.secondaryEmail.$touched && UserProfileForm.secondaryEmail.$pristine">
+                                <div ng-messages-include="error.messages.html"></div>
                             </div>
                         </div>
-                        <div class="form-group"
-                             ng-class="{ 'has-error': UserProfileForm.MobileNO.$touched && UserProfileForm.MobileNO.$invalid }">
-                            <label for="MobileNO" class="col-lg-2 control-label">mobile number</label>
-                            <div class="col-lg-10">
-                                <input type="text" name="MobileNO" class="form-control" id="MobileNO"
-                                       placeholder="Optional mobile number"
-                                       ng-model="user.MobileNO"
-                                       ng-pattern="/^[0-9]{11}$/">
-                                <div class="help-block" ng-messages="UserProfileForm.MobileNO.$error"
-                                     ng-show="UserProfileForm.MobileNO.$touched && !UserProfileForm.MobileNO.$pristine">
-                                    <div ng-messages-include="error.user.messages.html"></div>
-                                </div>
+                    </div>
+                    <div class="form-group"
+                         ng-class="{ 'has-error': UserProfileForm.telephone.$touched && UserProfileForm.telephone.$invalid }">
+                        <label for="telephone" class="col-lg-2 control-label">Telephone Number (Optional)</label>
+                        <div class="col-lg-10">
+                            <input type="text" name="telephone" class="form-control" id="telephone"
+                                   placeholder="Telephone number"
+                                   ng-model="userProfileCtrl.user.telephone"
+                                   ng-pattern="/^[0-9]{11}$/"
+                                   ng-disabled="!userProfileCtrl.updateProfile">
+                            <div class="help-block" ng-messages="UserProfileForm.telephone.$error"
+                                 ng-show="UserProfileForm.telephone.$touched && !UserProfileForm.telephone.$pristine">
+                                <div ng-messages-include="error.user.messages.html"></div>
                             </div>
                         </div>
-                        <div class="form-group"
-                             ng-class="{ 'has-error': UserProfileForm.UserAddress.$touched && UserProfileForm.UserAddress.$invalid }">
-                            <label for="UserAddress" class="col-lg-2 control-label">Address</label>
-                            <div class="col-lg-10">
-                        <textarea rows="3" name="UserAddress" class="form-control" id="UserAddress"
-                                  placeholder="Optional address field"
-                                  ng-model="user.UserAddress">
-                           </textarea>
-                                <div class="help-block" ng-messages="UserProfileForm.UserAddress.$error"
-                                     ng-show="UserProfileForm.UserAddress.$touched && !UserProfileForm.UserAddress.$pristine">
-                                    <div ng-messages-include="error.messages.html"></div>
-                                </div>
+                    </div>
+                    <div class="form-group"
+                         ng-class="{ 'has-error': UserProfileForm.MobileNO.$touched && UserProfileForm.MobileNO.$invalid }">
+                        <label for="MobileNO" class="col-lg-2 control-label">Mobile Number (Optional)</label>
+                        <div class="col-lg-10">
+                            <input type="text" name="MobileNO" class="form-control" id="MobileNO"
+                                   placeholder="Optional mobile number"
+                                   ng-model="userProfileCtrl.user.mobile"
+                                   ng-pattern="/^[0-9]{11}$/"
+                                   ng-disabled="!userProfileCtrl.updateProfile">
+                            <div class="help-block" ng-messages="UserProfileForm.MobileNO.$error"
+                                 ng-show="UserProfileForm.MobileNO.$touched && !UserProfileForm.MobileNO.$pristine">
+                                <div ng-messages-include="error.user.messages.html"></div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="col-lg-10">
-                                <button type="submit" class="btn btn-primary" ng-disabled="UserProfileForm.$invalid"
-                                        example-directive>Save
-                                </button>
+                    </div>
+                    <div class="form-group"
+                         ng-class="{ 'has-error': UserProfileForm.city.$touched && UserProfileForm.city.$invalid }">
+                        <label for="city" class="col-lg-2 control-label">City (Optional)</label>
+                        <div class="col-lg-10">
+                            <input name="city" type="text" id="city" class="form-control"
+                                   placeholder="City"
+                                   ng-model="userProfileCtrl.user.city"
+                                   ng-minlength="2"
+                                   ng-maxlength="72"
+                                   ng-disabled="!userProfileCtrl.updateProfile">
+                            <div class="help-block" ng-messages="UserProfileForm.city.$error"
+                                 ng-show="UserProfileForm.city.$touched && !UserProfileForm.city.$pristine">
+                                <div ng-messages-include="error.messages.html"></div>
                             </div>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                    <div class="form-group"
+                         ng-class="{ 'has-error': UserProfileForm.UserAddress.$touched && UserProfileForm.UserAddress.$invalid }">
+                        <label for="UserAddress" class="col-lg-2 control-label">Address (Optional)</label>
+                        <div class="col-lg-10">
+                                <textarea rows="3" name="UserAddress" class="form-control" id="UserAddress"
+                                          placeholder="Address"
+                                          ng-model="userProfileCtrl.user.address"
+                                          ng-disabled="!userProfileCtrl.updateProfile">
+                                </textarea>
+                            <div class="help-block" ng-messages="UserProfileForm.UserAddress.$error"
+                                 ng-show="UserProfileForm.UserAddress.$touched && !UserProfileForm.UserAddress.$pristine">
+                                <div ng-messages-include="error.messages.html"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group"
+                         ng-class="{ 'has-error': UserProfileForm.zipCode.$touched && UserProfileForm.zipCode.$invalid }">
+                        <label for="zipCode" class="col-lg-2 control-label">Zip Code (Optional)</label>
+                        <div class="col-lg-10">
+                            <input type="text" name="zipCode" class="form-control" id="zipCode"
+                                   placeholder="Zip Code"
+                                   ng-model="userProfileCtrl.user.zipCode"
+                                   ng-pattern="/^[0-9]{5}$/"
+                                   ng-disabled="!userProfileCtrl.updateProfile">
+                            <div class="help-block" ng-messages="UserProfileForm.zipCode.$error"
+                                 ng-show="UserProfileForm.zipCode.$touched && !UserProfileForm.zipCode.$pristine">
+                                <div ng-messages-include="error.user.messages.html"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-lg-5 col-lg-offset-5">
+                            <button type="button"
+                                    class="btn btn-warning"
+                                    ng-hide="userProfileCtrl.updateProfile"
+                                    ng-click="userProfileCtrl.updateProfile = !userProfileCtrl.updateProfile">
+                                Modify
+                            </button>
+                            <button type="button"
+                                    class="btn btn-primary"
+                                    ng-show="userProfileCtrl.updateProfile"
+                                    ng-click="userProfileCtrl.updateProfile = !userProfileCtrl.updateProfile"
+                                    ng-disabled="UserProfileForm.$invalid">
+                                Save
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-    <!-- end of category panel-->
-    <!-- start of my bids and my products panel-->
-  <div class="col-md-4 col-lg-4 col-sm-4">
-       <div ui-view="list"></div>
-    </div>
-    <!-- end of panel-->
 </div>
+<!-- end of category panel-->

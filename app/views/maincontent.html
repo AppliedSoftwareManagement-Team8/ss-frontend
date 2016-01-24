@@ -16,44 +16,24 @@
             </div>
             <div class="panel-body">
                 <div class="container" style="padding-left:70px;">
-                    <div class="row row-eq-height">
+                    <div ng-repeat="category in mainPageCtrl.categories track by $index" ng-if="$index % 3 == 0" class="row row-eq-height">
                         <div class="col-lg-4">
-                            <h4>homedecor and furniture</h4>
-                             <a href="#" class="thumbnail">
-                             <img src="images/Homedecor.jpg">
-                             </a>
-                        </div>
-                        <div class="col-lg-4">
-                            <h4>Electrical appliances </h4>
+                            <h4>{{mainPageCtrl.categories[$index].name}}</h4>
                             <a href="#" class="thumbnail">
-                             <img src="images/electricalappliances.jpg">
-                             </a>
-                        </div>
-                        <div class="col-lg-4">
-                            <h4>Books & stationary</h4>
-                            <a href="#" class="thumbnail">
-                              <img src="images/Books.jpg">
-                              </a>
-                        </div>
-                    </div>
-                    <div class="row row-eq-height">
-                        <div class="col-lg-4">
-                            <h4>Cycles or automobiles</h4>
-                            <a href="#" class="thumbnail">
-                            <img src="images/cyclesautomobiles.jpg">
+                                <img ng-src="images/{{mainPageCtrl.categories[$index]._id.$id}}.jpg">
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <h4>Clothes and footwear</h4>
+                            <h4>{{mainPageCtrl.categories[$index + 1].name}}</h4>
                             <a href="#" class="thumbnail">
-                            <img src="images/clothes.jpg">
+                                <img ng-src="images/{{mainPageCtrl.categories[$index + 1]._id.$id}}.jpg">
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <h4>Antiques and collectibles</h4>
+                            <h4>{{mainPageCtrl.categories[$index + 1].name}}</h4>
                             <a href="#" class="thumbnail">
-                           <img src="images/Antiques.jpg">
-                           </a>
+                                <img ng-src="images/{{mainPageCtrl.categories[$index + 2]._id.$id}}.jpg">
+                            </a>
                         </div>
                     </div>
                 </div>

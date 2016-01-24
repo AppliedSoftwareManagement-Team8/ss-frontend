@@ -10,7 +10,7 @@ function CompareTo() {
         link: function(scope, element, attributes, ngModel) {
 
             ngModel.$validators.compareTo = function(modelValue) {
-                return modelValue === scope.otherModelValue.$modelValue;
+                return modelValue === scope.otherModelValue;
             };
 
             scope.$watch("otherModelValue", function() {
